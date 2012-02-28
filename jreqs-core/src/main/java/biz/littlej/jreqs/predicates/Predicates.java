@@ -15,6 +15,7 @@
  */
 package biz.littlej.jreqs.predicates;
 
+import java.io.File;
 import java.util.regex.Pattern;
 
 import static biz.littlej.jreqs.predicates.PredicateOperations.not;
@@ -22,7 +23,7 @@ import static biz.littlej.jreqs.predicates.PredicateOperations.not;
 /**
  * Static utility methods that provide Predicate instances.
  * All methods returns serializable predicates as long as they're given serializable parameters.
- * <p />
+ * <p/>
  * Do a static import of this class and consider its methods as syntactic sugar.
  *
  * @author Yannick LOTH
@@ -101,4 +102,31 @@ public final class Predicates {
         return not(blankString());
     }
 
+    public static Predicate<File> writeableFile() {
+        return FilePredicates.CAN_WRITE;
+    }
+
+    public static Predicate<File> readableFile() {
+        return FilePredicates.CAN_READ;
+    }
+
+    public static Predicate<File> executableFile() {
+        return FilePredicates.CAN_EXECUTE;
+    }
+
+    public static Predicate<File> hiddenFile() {
+        return FilePredicates.IS_HIDDEN;
+    }
+
+    public static Predicate<File> isDirectory() {
+        return FilePredicates.IS_DIRECTORY;
+    }
+
+    public static Predicate<File> isFile() {
+        return FilePredicates.IS_FILE;
+    }
+
+    public static Predicate<File> existingFile() {
+        return FilePredicates.EXISTS;
+    }
 }
