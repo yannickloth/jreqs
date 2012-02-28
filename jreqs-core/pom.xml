@@ -10,4 +10,30 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>jreqs-core</artifactId>
+    <packaging>jar</packaging>
+    <name>jreqs-core</name>
+    <description>jreqs-core module</description>
+    <url>https://github.com/yannickloth/jreqs</url>
+    <licenses>
+        <license>
+            <name>Apache 2</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+    <scm>
+        <url>https://github.com/yannickloth/jreqs</url>
+        <connection>scm:git:https://github.com/yannickloth/jreqs.git</connection>
+        <developerConnection>scm:git:https://github.com/yannickloth/jreqs.git</developerConnection>
+    </scm>
+    <developers>
+        <developer>
+            <name>Yannick LOTH</name>
+            <timezone>+1</timezone>
+            <email>yannick AT littlej.biz</email>
+            <organization>LittleJ</organization>
+            <organizationUrl>http://www.littlej.biz</organizationUrl>
+        </developer>
+    </developers>
 </project>

@@ -7,9 +7,39 @@
     <artifactId>jreqs</artifactId>
     <packaging>pom</packaging>
     <version>0.1.0-SNAPSHOT</version>
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+    <name>jreqs</name>
+    <description>jreqs root project</description>
+    <url>https://github.com/yannickloth/jreqs</url>
     <modules>
         <module>jreqs-parent</module>
         <module>jreqs-core</module>
         <module>jreqs-guava</module>
     </modules>
+    <licenses>
+        <license>
+            <name>Apache 2</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+    <scm>
+        <url>https://github.com/yannickloth/jreqs</url>
+        <connection>scm:git:https://github.com/yannickloth/jreqs.git</connection>
+        <developerConnection>scm:git:https://github.com/yannickloth/jreqs.git</developerConnection>
+    </scm>
+    <developers>
+        <developer>
+            <name>Yannick LOTH</name>
+            <timezone>+1</timezone>
+            <email>yannick AT littlej.biz</email>
+            <organization>LittleJ</organization>
+            <organizationUrl>http://www.littlej.biz</organizationUrl>
+        </developer>
+    </developers>
 </project>
