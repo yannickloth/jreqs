@@ -129,4 +129,19 @@ public final class Predicates {
     public static Predicate<File> existingFile() {
         return FilePredicates.EXISTS;
     }
+    public static Predicate<Number> negative() {
+        return NumberPredicates.NEGATIVE;
+    }
+    public static Predicate<Number> strictlyNegative() {
+        return NumberPredicates.STRICTLY_NEGATIVE;
+    }
+    public static Predicate<Number> positive() {
+        return NumberPredicates.POSITIVE;
+    }
+    public static Predicate<Number> strictlyPositive() {
+        return NumberPredicates.STRICTLY_POSITIVE;
+    }
+    public static Predicate<Number> zero() {
+        return NumberPredicates.ZERO;
+    }
 }
