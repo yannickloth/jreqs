@@ -20,10 +20,12 @@ import biz.littlej.jreqs.Reqs;
 import java.io.Serializable;
 
 /**
+ * Checks that all input classes are assignable from the input class.
+ *
  * @author Yannick LOTH
  * @since 0.1.0
  */
-public class AssignableFromPredicate implements Predicate<Class<?>>, Serializable {
+public final class AssignableFromPredicate implements Predicate<Class<?>>, Serializable {
     private static final long serialVersionUID = 0;
     private final Class<?> clazz;
 

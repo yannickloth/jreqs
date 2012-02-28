@@ -22,7 +22,7 @@ import static biz.littlej.jreqs.predicates.PredicateOperations.not;
 /**
  * Static utility methods that provide Predicate instances.
  * All methods returns serializable predicates as long as they're given serializable parameters.
- * <p/>
+ * <p />
  * Do a static import of this class and consider its methods as syntactic sugar.
  *
  * @author Yannick LOTH
@@ -50,7 +50,7 @@ public final class Predicates {
     }
 
     public static <T> Predicate<T> emptyCollection() {
-        return CollectionPredicates.EMPTY.narrowedType();
+        return (Predicate<T>) CollectionPredicates.EMPTY;
     }
 
     public static <T> Predicate<T> alwaysTrue() {

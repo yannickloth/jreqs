@@ -16,14 +16,17 @@
 package biz.littlej.jreqs.predicates;
 
 import biz.littlej.jreqs.Reqs;
+import biz.littlej.jreqs.util.Objects;
 
 import java.io.Serializable;
 
 /**
+ * Checks if an input object is equal to the specified object, using {@link Objects#equals}.
+ *
  * @author Yannick LOTH
  * @since 0.1.0
  */
-public class EqualToPredicate<T> implements Predicate<T>, Serializable {
+public final class EqualToPredicate<T> implements Predicate<T>, Serializable {
     private static final long serialVersionUID = 0;
     private final Object o;
 
@@ -33,6 +36,6 @@ public class EqualToPredicate<T> implements Predicate<T>, Serializable {
     }
 
     public boolean apply(final T inputParam) {
-        return o.equals(inputParam);
+        return Objects.equals(o, inputParam);
     }
 }

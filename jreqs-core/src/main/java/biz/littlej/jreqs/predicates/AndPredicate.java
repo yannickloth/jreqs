@@ -22,10 +22,12 @@ import java.io.Serializable;
 import static biz.littlej.jreqs.predicates.Predicates.notNull;
 
 /**
+ * Returns a predicate that evaluates to {@code true} if all specified predicates also do for the same input, like the logical AND.
+ *
  * @author Yannick LOTH
  * @since 0.1.0
  */
-public class AndPredicate<T> implements Predicate<T>, Serializable {
+public final class AndPredicate<T> implements Predicate<T>, Serializable {
     private static final long serialVersionUID = 0;
     private final Predicate firstMemberPredicate;
     private final Predicate secondeMemberPredicate;

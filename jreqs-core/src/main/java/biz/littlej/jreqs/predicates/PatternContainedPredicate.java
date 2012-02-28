@@ -21,15 +21,18 @@ import java.io.Serializable;
 import java.util.regex.Pattern;
 
 /**
- * Determines a boolean value for a given input.
+ * Checks if the input {@code CharSequence} matches the specified {@link Pattern}.
  *
  * @author Yannick LOTH
  * @since 0.1.0
  */
-public class PatternContainedPredicate implements Predicate<CharSequence>, Serializable {
+public final class PatternContainedPredicate implements Predicate<CharSequence>, Serializable {
     private static final long serialVersionUID = 0;
     private final Pattern pattern;
 
+    /**
+     * @param patternParam Must not be {@code null}.
+     */
     public PatternContainedPredicate(final Pattern patternParam) {
         Reqs.parameterCondition(Predicates.notNull(), patternParam, "Pattern parameter must not be null.");
         pattern = patternParam;

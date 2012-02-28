@@ -15,22 +15,22 @@
  */
 package biz.littlej.jreqs.predicates;
 
+import biz.littlej.jreqs.Reqs;
+
 import java.io.Serializable;
 import java.util.Collection;
 
 /**
+ * Some predicates pertaining to {@code Collection}.
+ *
  * @author Yannick LOTH
  * @since 0.1.0
  */
 public enum CollectionPredicates implements Predicate<Collection>, Serializable {
     EMPTY {
         public boolean apply(final Collection inputParam) {
+            Reqs.parameterCondition(Predicates.notNull(), inputParam, "Collection input parameter must not be null.");
             return inputParam.isEmpty();
         }
     };
-
-    @SuppressWarnings("unchecked")
-    public <T> Predicate<T> narrowedType() {
-        return (Predicate<T>) this;
-    }
 }

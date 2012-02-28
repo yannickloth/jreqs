@@ -21,10 +21,12 @@ import biz.littlej.jreqs.Reqs;
 import java.io.Serializable;
 
 /**
+ * Returns a predicate that evaluates to {@code true} if any of the specified predicates also do for the same input, like the logical OR.
+ *
  * @author Yannick LOTH
  * @since 0.1.0
  */
-public class OrPredicate<T> implements Predicate<T>, Serializable {
+public final class OrPredicate<T> implements Predicate<T>, Serializable {
     private static final long serialVersionUID = 0;
     private final Predicate firstMemberPredicate;
     private final Predicate secondeMemberPredicate;

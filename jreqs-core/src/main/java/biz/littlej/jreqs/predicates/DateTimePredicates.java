@@ -19,15 +19,23 @@ import java.io.Serializable;
 import java.util.Calendar;
 
 /**
+ * Some predicates pertaining to date or time.
+ *
  * @author Yannick LOTH
  * @since 0.1.0
  */
 public enum DateTimePredicates implements Predicate<Calendar>, Serializable {
+    /**
+     * Evaluates to {@code true} if the specified input {@code Calendar} is in the past.
+     */
     PAST {
         public boolean apply(final Calendar inputParam) {
             return inputParam.before(Calendar.getInstance());
         }
     },
+    /**
+     * Evaluates to {@code true} if the specified input {@code Calendar} is in the future.
+     */
     FUTURE {
         public boolean apply(final Calendar inputParam) {
             return inputParam.after(Calendar.getInstance());

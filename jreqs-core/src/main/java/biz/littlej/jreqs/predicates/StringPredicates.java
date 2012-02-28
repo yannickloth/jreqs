@@ -22,11 +22,17 @@ import java.io.Serializable;
  * @since 0.1.0
  */
 public enum StringPredicates implements Predicate<String>, Serializable {
+    /**
+     * Checks if the input {@code String} is empty.
+     */
     EMPTY {
         public boolean apply(final String inputParam) {
             return inputParam.isEmpty();
         }
     },
+    /**
+     * Checks if the input {@code String} is blank (null, empty or only contains spaces and tabs).
+     */
     BLANK {
         public boolean apply(final String inputParam) {
             return inputParam == null || inputParam.trim().isEmpty();

@@ -18,15 +18,23 @@ package biz.littlej.jreqs.predicates;
 import java.io.Serializable;
 
 /**
+ * Some predicates pertaining to {@code Object}.
+ *
  * @author Yannick LOTH
  * @since 0.1.0
  */
 public enum ObjectPredicates implements Predicate<Object>, Serializable {
+    /**
+     * Always evaluates to {@code true}.
+     */
     ALWAYS_TRUE {
         public boolean apply(final Object inputParam) {
             return true;
         }
     },
+    /**
+     * Checks if a reference is {@code null}.
+     */
     NULL {
         public boolean apply(final Object inputParam) {
             return inputParam != null;

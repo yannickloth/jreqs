@@ -20,10 +20,12 @@ import biz.littlej.jreqs.Reqs;
 import java.io.Serializable;
 
 /**
+ * Checks that the input object is an instance of the specified class.
+ *
  * @author Yannick LOTH
  * @since 0.1.0
  */
-public class InstanceOfPredicate implements Predicate<Object>, Serializable {
+public final class InstanceOfPredicate implements Predicate<Object>, Serializable {
     private static final long serialVersionUID = 0;
     private final Class<?> clazz;
 
