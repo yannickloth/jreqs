@@ -30,6 +30,8 @@ public interface Predicate<T> {
      * Object.equals}: {@code a.equals(b)} implies that {@code predicate.apply(a) == predicate.apply(b))} and vice-versa.</li>
      * </ul>
      *
+     * @param inputParam The input parameter on which this predicate is applied.
+     * @return The boolean value to which this predicate evaluates.
      * @throws NullPointerException if {@code inputParam} is {@code null} and this predicate does not accept a {@code null} parameter.
      */
     boolean apply(T inputParam);

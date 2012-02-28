@@ -33,11 +33,11 @@ public enum CharSequencePredicates implements Predicate<CharSequence>, Serializa
         /**
          * See {@link Predicate#apply}.
          * @param inputParam Must not be null.
-         * @return
+         * @return {@code true} if the specified input parameter is empty.
          */
         public boolean apply(final CharSequence inputParam) {
             Reqs.parameterCondition(Predicates.notNull(), inputParam, "Input String parameter must not be null.");
             return inputParam.length() == 0;
         }
-    };
+    }
 }

@@ -32,5 +32,5 @@ public enum CollectionPredicates implements Predicate<Collection>, Serializable 
             Reqs.parameterCondition(Predicates.notNull(), inputParam, "Collection input parameter must not be null.");
             return inputParam.isEmpty();
         }
-    };
+    }
 }

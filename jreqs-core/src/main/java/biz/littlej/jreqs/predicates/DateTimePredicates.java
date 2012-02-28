@@ -40,5 +40,5 @@ public enum DateTimePredicates implements Predicate<Calendar>, Serializable {
         public boolean apply(final Calendar inputParam) {
             return inputParam.after(Calendar.getInstance());
         }
-    };
+    }
 }

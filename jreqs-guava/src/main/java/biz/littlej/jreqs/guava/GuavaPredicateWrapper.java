@@ -28,7 +28,7 @@ import static biz.littlej.jreqs.predicates.Predicates.notNull;
  * @since 0.1.0
  */
 public final class GuavaPredicateWrapper<T> implements Predicate<T> {
-    com.google.common.base.Predicate<T> guavaPredicate;
+    private final com.google.common.base.Predicate<T> guavaPredicate;
 
     /**
      * Returns a new {@code Predicate<T>} that wraps the specified Guava predicate.

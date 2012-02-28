@@ -29,8 +29,8 @@ import static biz.littlej.jreqs.predicates.Predicates.notNull;
  */
 public final class AndPredicate<T> implements Predicate<T>, Serializable {
     private static final long serialVersionUID = 0;
-    private final Predicate firstMemberPredicate;
-    private final Predicate secondeMemberPredicate;
+    private final Predicate<T> firstMemberPredicate;
+    private final Predicate<T> secondeMemberPredicate;
 
     public AndPredicate(final Predicate<T> firstMemberPredicateParam, final Predicate<T> secondMemberPredicateParam) {
         Reqs.parameterCondition(notNull(), firstMemberPredicateParam, "First member predicate object parameter must not be null.");

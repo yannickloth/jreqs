@@ -28,8 +28,8 @@ import java.io.Serializable;
  */
 public final class XorPredicate<T> implements Predicate<T>, Serializable {
     private static final long serialVersionUID = 0;
-    private final Predicate firstMemberPredicate;
-    private final Predicate secondeMemberPredicate;
+    private final Predicate<T> firstMemberPredicate;
+    private final Predicate<T> secondeMemberPredicate;
 
     public XorPredicate(final Predicate<T> firstMemberPredicateParam, final Predicate<T> secondMemberPredicateParam) {
         Reqs.parameterCondition(Predicates.notNull(), firstMemberPredicateParam, "First member predicate object parameter must not be null.");

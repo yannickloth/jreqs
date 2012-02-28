@@ -15,14 +15,24 @@
  */
 package biz.littlej.jreqs.predicates;
 
-import static biz.littlej.jreqs.Reqs.parameterCondition;
 /**
+ * Some predicates that evaluate to a boolean logic operation on other predicates' evaluations.
+ *
  * @author Yannick LOTH
  * @since 0.1.0
  */
 public final class PredicateOperations {
+    /**
+     * Returns a predicate that evaluates to the opposite value of the specified predicate, like the boolean operation NOT.
+     *
+     * @param originalPredicate
+     * @param <T>
+     * @return
+     */
     public static <T> Predicate<T> not(final Predicate<T> originalPredicate) {
-        parameterCondition(not(ObjectPredicates.NULL), originalPredicate, "Original predicate object parameter must not be null.");
+        if (originalPredicate == null) {
+            throw new IllegalArgumentException("Original predicate object parameter must not be null.");
+        }
         return new Predicate<T>() {
             public boolean apply(final T inputParam) {
                 return !originalPredicate.apply(inputParam);
