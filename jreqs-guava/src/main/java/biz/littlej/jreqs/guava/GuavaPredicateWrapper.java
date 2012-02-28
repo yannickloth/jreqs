@@ -18,6 +18,8 @@ package biz.littlej.jreqs.guava;
 import biz.littlej.jreqs.Reqs;
 import biz.littlej.jreqs.predicates.Predicate;
 
+import java.io.Serializable;
+
 import static biz.littlej.jreqs.predicates.Predicates.notNull;
 
 /**
@@ -27,7 +29,8 @@ import static biz.littlej.jreqs.predicates.Predicates.notNull;
  * @author Yannick LOTH
  * @since 0.1.0
  */
-public final class GuavaPredicateWrapper<T> implements Predicate<T> {
+public final class GuavaPredicateWrapper<T> implements Predicate<T>, Serializable {
+    private static final long serialVersionUID = 0;
     private final com.google.common.base.Predicate<T> guavaPredicate;
 
     /**
@@ -39,11 +42,11 @@ public final class GuavaPredicateWrapper<T> implements Predicate<T> {
      * @throws IllegalArgumentException if the {@code guavaPredicateParam} is {@code null}.
      */
     public static <T> Predicate<T> wrapGuavaPredicate(com.google.common.base.Predicate<T> guavaPredicateParam) {
+        Reqs.parameterCondition(notNull(), guavaPredicateParam, "The guava predicate parameter must not be null.");
         return new GuavaPredicateWrapper<T>(guavaPredicateParam);
     }
 
     private GuavaPredicateWrapper(final com.google.common.base.Predicate<T> guavaPredicateParam) {
-        Reqs.parameterCondition(notNull(), guavaPredicateParam, "The guava predicate parameter must not be null.");
         guavaPredicate = guavaPredicateParam;
     }
 
