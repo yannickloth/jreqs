@@ -29,9 +29,9 @@
         </license>
     </licenses>
     <scm>
-        <url>https://github.com/yannickloth/jreqs</url>
-        <connection>scm:git:https://github.com/yannickloth/jreqs.git</connection>
-        <developerConnection>scm:git:https://github.com/yannickloth/jreqs.git</developerConnection>
+        <url>https://github.com/LittleJ/jreqs</url>
+        <connection>scm:git:https://yannickloth@github.com/LittleJ/jreqs.git</connection>
+        <developerConnection>scm:git:https://yannickloth@github.com/LittleJ/jreqs.git</developerConnection>
     </scm>
     <developers>
         <developer>
