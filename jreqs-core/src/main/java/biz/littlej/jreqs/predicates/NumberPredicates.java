@@ -15,9 +15,13 @@
  */
 package biz.littlej.jreqs.predicates;
 
+import biz.littlej.jreqs.Reqs;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+
+import static biz.littlej.jreqs.predicates.Predicates.notNull;
 
 /**
  * Some predicates pertaining to numbers.
@@ -31,6 +35,7 @@ public enum NumberPredicates implements Predicate<Number>, Serializable {
      */
     ZERO {
         public boolean apply(final Number inputParam) {
+            Reqs.parameterCondition(notNull(), inputParam, "Input number parameter must not be null.");
             if (inputParam instanceof BigDecimal) {
                 final BigDecimal value = (BigDecimal) inputParam;
                 return value.equals(BigDecimal.ZERO);

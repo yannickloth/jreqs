@@ -37,7 +37,7 @@ public enum ObjectPredicates implements Predicate<Object>, Serializable {
      */
     NULL {
         public boolean apply(final Object inputParam) {
-            return inputParam != null;
+            return inputParam == null;
         }
     }
 }
