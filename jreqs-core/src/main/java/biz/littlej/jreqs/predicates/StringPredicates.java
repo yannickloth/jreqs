@@ -15,6 +15,8 @@
  */
 package biz.littlej.jreqs.predicates;
 
+import biz.littlej.jreqs.Reqs;
+
 import java.io.Serializable;
 
 /**
@@ -27,6 +29,7 @@ public enum StringPredicates implements Predicate<String>, Serializable {
      */
     EMPTY {
         public boolean apply(final String inputParam) {
+            Reqs.parameterCondition(Predicates.notNull(), inputParam, "String input parameter must not be null.");
             return inputParam.isEmpty();
         }
     },
@@ -38,9 +41,4 @@ public enum StringPredicates implements Predicate<String>, Serializable {
             return inputParam == null || inputParam.trim().isEmpty();
         }
     };
-
-    @SuppressWarnings("unchecked")
-    public <T> Predicate<T> narrowedType() {
-        return (Predicate<T>) this;
-    }
 }

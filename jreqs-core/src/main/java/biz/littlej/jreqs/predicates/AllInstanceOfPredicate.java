@@ -35,6 +35,7 @@ public final class AllInstanceOfPredicate implements Predicate<Iterable<?>>, Ser
     }
 
     public boolean apply(final Iterable<?> inputParam) {
+        Reqs.parameterCondition(Predicates.notNull(), inputParam, "Iterable input parameter must not be null.");
         for (final Object current : inputParam) {
             if (!clazz.isInstance(current)) {
                 return false;

@@ -52,6 +52,7 @@ public enum NumberPredicates implements Predicate<Number>, Serializable {
      */
     STRICTLY_NEGATIVE {
         public boolean apply(final Number inputParam) {
+            Reqs.parameterCondition(Predicates.notNull(), inputParam, "Input number parameter must not be null.");
             if (inputParam instanceof BigDecimal) {
                 final BigDecimal value = (BigDecimal) inputParam;
                 return 0 > value.compareTo(BigDecimal.ZERO);
@@ -68,6 +69,7 @@ public enum NumberPredicates implements Predicate<Number>, Serializable {
      */
     STRICTLY_POSITIVE {
         public boolean apply(final Number inputParam) {
+            Reqs.parameterCondition(Predicates.notNull(), inputParam, "Input number parameter must not be null.");
             if (inputParam instanceof BigDecimal) {
                 final BigDecimal value = (BigDecimal) inputParam;
                 return 0 < value.compareTo(BigDecimal.ZERO);
@@ -84,6 +86,7 @@ public enum NumberPredicates implements Predicate<Number>, Serializable {
      */
     NEGATIVE {
         public boolean apply(final Number inputParam) {
+            Reqs.parameterCondition(Predicates.notNull(), inputParam, "Input number parameter must not be null.");
             if (inputParam instanceof BigDecimal) {
                 final BigDecimal value = (BigDecimal) inputParam;
                 return 0 >= value.compareTo(BigDecimal.ZERO);
@@ -100,6 +103,7 @@ public enum NumberPredicates implements Predicate<Number>, Serializable {
      */
     POSITIVE {
         public boolean apply(final Number inputParam) {
+            Reqs.parameterCondition(Predicates.notNull(), inputParam, "Input number parameter must not be null.");
             if (inputParam instanceof BigDecimal) {
                 final BigDecimal value = (BigDecimal) inputParam;
                 return 0 <= value.compareTo(BigDecimal.ZERO);

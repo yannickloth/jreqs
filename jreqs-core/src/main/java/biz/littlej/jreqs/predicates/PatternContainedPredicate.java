@@ -43,6 +43,7 @@ public final class PatternContainedPredicate implements Predicate<CharSequence>,
     }
 
     public boolean apply(CharSequence charSequenceParam) {
+        Reqs.parameterCondition(Predicates.notNull(), charSequenceParam, "CharSequence input parameter must not be null.");
         return pattern.matcher(charSequenceParam).find();
     }
 }

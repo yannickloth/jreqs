@@ -15,6 +15,8 @@
  */
 package biz.littlej.jreqs.predicates;
 
+import biz.littlej.jreqs.Reqs;
+
 import java.io.Serializable;
 import java.util.Calendar;
 
@@ -30,6 +32,7 @@ public enum DateTimePredicates implements Predicate<Calendar>, Serializable {
      */
     PAST {
         public boolean apply(final Calendar inputParam) {
+            Reqs.parameterCondition(Predicates.notNull(), inputParam, "Calendar input parameter must not be null.");
             return inputParam.before(Calendar.getInstance());
         }
     },
@@ -38,6 +41,7 @@ public enum DateTimePredicates implements Predicate<Calendar>, Serializable {
      */
     FUTURE {
         public boolean apply(final Calendar inputParam) {
+            Reqs.parameterCondition(Predicates.notNull(), inputParam, "Calendar input parameter must not be null.");
             return inputParam.after(Calendar.getInstance());
         }
     }

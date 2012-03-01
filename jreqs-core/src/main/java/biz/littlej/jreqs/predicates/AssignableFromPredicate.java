@@ -35,6 +35,7 @@ public final class AssignableFromPredicate implements Predicate<Class<?>>, Seria
     }
 
     public boolean apply(final Class<?> inputParam) {
+        Reqs.parameterCondition(Predicates.notNull(), inputParam, "Class input parameter must not be null.");
         return clazz.isAssignableFrom(inputParam);
     }
 }

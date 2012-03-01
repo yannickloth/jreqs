@@ -35,6 +35,7 @@ public final class InstanceOfPredicate implements Predicate<Object>, Serializabl
     }
 
     public boolean apply(final Object inputParam) {
+        Reqs.parameterCondition(Predicates.notNull(), inputParam, "Input object parameter must not be null.");
         return clazz.isInstance(inputParam);
     }
 }
