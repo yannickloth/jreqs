@@ -82,4 +82,32 @@ public class PredicatesTest {
             assertTrue("With null input an IllegalArgumentException must be thrown.", Predicates.zero().apply(null));
         }
     }
+
+    @Test
+    public void testIsNullWithNullInput() {
+        {
+            assertTrue("Null input should evaluate to true.", Predicates.isNull().apply(null));
+        }
+    }
+
+    @Test
+    public void testIsNullWithNotNullInput() {
+        {
+            assertFalse("Not null input should evaluate to false.", Predicates.isNull().apply(new Object()));
+        }
+    }
+
+    @Test
+    public void testNotNullWithNotNullInput() {
+        {
+            assertTrue("Not null input should evaluate to true.", Predicates.notNull().apply(new Object()));
+        }
+    }
+
+    @Test
+    public void testNotNullWithNullInput() {
+        {
+            assertFalse("Not null input should evaluate to false.", Predicates.notNull().apply(null));
+        }
+    }
 }
