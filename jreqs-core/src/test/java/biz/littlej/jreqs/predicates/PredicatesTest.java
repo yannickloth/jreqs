@@ -19,6 +19,10 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -79,7 +83,7 @@ public class PredicatesTest {
     @Test(expected = IllegalArgumentException.class)
     public void testZeroWithNullInput() {
         {
-            assertTrue("With null input an IllegalArgumentException must be thrown.", Predicates.zero().apply(null));
+            Predicates.zero().apply(null);
         }
     }
 
@@ -108,6 +112,119 @@ public class PredicatesTest {
     public void testNotNullWithNullInput() {
         {
             assertFalse("Null input should evaluate to false.", Predicates.notNull().apply(null));
+        }
+    }
+
+    @Test
+    public void testFuture() {
+        {
+            final Calendar time = Calendar.getInstance();
+            time.add(Calendar.HOUR, 1);
+            assertTrue("Next hour should evaluate to true.", Predicates.future().apply(time));
+        }
+        {
+            final Calendar time = Calendar.getInstance();
+            time.add(Calendar.HOUR, -1);
+            assertFalse("Previous hour should evaluate to false.", Predicates.future().apply(time));
+        }
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testFutureWithNullInput() {
+        Predicates.future().apply(null);
+    }
+
+    @Test
+    public void testPast() {
+        {
+            final Calendar time = Calendar.getInstance();
+            time.add(Calendar.HOUR, -1);
+            assertTrue("Previous hour should evaluate to true.", Predicates.past().apply(time));
+        }
+        {
+            final Calendar time = Calendar.getInstance();
+            time.add(Calendar.HOUR, 1);
+            assertFalse("Next hour should evaluate to false.", Predicates.past().apply(time));
+        }
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testPastWithNullInput() {
+        Predicates.past().apply(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testInstanceOfWithNullInput() {
+        Predicates.instanceOf(Exception.class).apply(null);
+    }
+
+    @Test
+    public void testInstanceOf() {
+        {
+            final Calendar time = Calendar.getInstance();
+            assertTrue("Calendar object should evaluate to true.", Predicates.instanceOf(Calendar.class).apply(time));
+        }
+        {
+            assertFalse("Date object should evaluate to false.", Predicates.instanceOf(Calendar.class).apply(new Date()));
+        }
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testAllInstanceOfWithNullInput() {
+        Predicates.allInstanceOf(Exception.class).apply(null);
+    }
+
+    @Test
+    public void testAllInstanceOf() {
+        {
+            final List<?> list = new ArrayList<>();
+            assertTrue("Empty list should evaluate to true.", Predicates.allInstanceOf(Calendar.class).apply(list));
+        }
+        {
+            final List<Calendar> list = new ArrayList<>();
+            list.add(Calendar.getInstance());
+            list.add(Calendar.getInstance());
+            assertTrue("List of Calendar should evaluate to true.", Predicates.allInstanceOf(Calendar.class).apply(list));
+        }
+        {
+            final List<Date> list = new ArrayList<>();
+            list.add(new Date());
+            list.add(new Date());
+            assertFalse("List of Date should evaluate to false.", Predicates.allInstanceOf(Calendar.class).apply(list));
+        }
+        {
+            final List list = new ArrayList();
+            list.add(new Date());
+            list.add(Calendar.getInstance());
+            assertFalse("List of Calendar and Date should evaluate to false.", Predicates.allInstanceOf(Calendar.class).apply(list));
+        }
+        {
+            // Same as previous, but with reversed order, to make sure that order does not matter in evaluation.
+            final List list = new ArrayList();
+            list.add(Calendar.getInstance());
+            list.add(new Date());
+            assertFalse("List of Calendar and Date should evaluate to false.", Predicates.allInstanceOf(Calendar.class).apply(list));
+        }
+    }
+    @Test
+    public void testBlankString() {
+        {
+            assertTrue("Empty String should evaluate to true.", Predicates.blankString().apply(""));
+        }
+        {
+            assertTrue("Null should evaluate to true.", Predicates.blankString().apply(null));
+        }
+        {
+            assertTrue("String with only spaces should evaluate to true.", Predicates.blankString().apply("   "));
+        }
+        {
+            assertTrue("String with only tabs should evaluate to true.", Predicates.blankString().apply("\t"));
+        }
+        {
+            assertTrue("String with only spaces and tabs should evaluate to true.", Predicates.blankString().apply("   \t"));
+        }
+        {
+            assertFalse("String with content should evaluate to false.", Predicates.blankString().apply("notEmpty"));
         }
     }
 }
