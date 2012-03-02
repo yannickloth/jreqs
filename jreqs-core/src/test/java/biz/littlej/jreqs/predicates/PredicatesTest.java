@@ -107,7 +107,7 @@ public class PredicatesTest {
     @Test
     public void testNotNullWithNullInput() {
         {
-            assertFalse("Not null input should evaluate to false.", Predicates.notNull().apply(null));
+            assertFalse("Null input should evaluate to false.", Predicates.notNull().apply(null));
         }
     }
 }
