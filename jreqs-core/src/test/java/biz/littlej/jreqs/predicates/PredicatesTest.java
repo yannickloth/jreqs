@@ -19,10 +19,7 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -206,6 +203,7 @@ public class PredicatesTest {
             assertFalse("List of Calendar and Date should evaluate to false.", Predicates.allInstanceOf(Calendar.class).apply(list));
         }
     }
+
     @Test
     public void testBlankString() {
         {
@@ -226,5 +224,30 @@ public class PredicatesTest {
         {
             assertFalse("String with content should evaluate to false.", Predicates.blankString().apply("notEmpty"));
         }
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testEmptyCharSequenceWithNullInput() {
+        Predicates.emptyCharSequence().apply(null);
+    }
+
+    @Test
+    public void testEmptyCharSequence() {
+        assertTrue("Empty String should evaluate to true.", Predicates.emptyCharSequence().apply(""));
+        assertFalse("String with one space character should evaluate to false.", Predicates.emptyCharSequence().apply(" "));
+        assertFalse("String with many spaces character should evaluate to false.", Predicates.emptyCharSequence().apply("    "));
+        assertFalse("String with one tab character should evaluate to false.", Predicates.emptyCharSequence().apply("\t"));
+        assertFalse("String with some text should evaluate to false.", Predicates.emptyCharSequence().apply("String with some text..."));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testEmptyCollectionWithNullInput() {
+        Predicates.emptyCollection().apply(null);
+    }
+
+    @Test
+    public void testEmptyCollection() {
+        assertTrue("Empty List should evaluate to true.", Predicates.emptyCollection().apply(new ArrayList()));
+        assertFalse("Integer list should evaluate to false.", Predicates.emptyCollection().apply(Arrays.asList(new int[]{1, 2, 3})));
     }
 }
