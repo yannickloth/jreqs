@@ -177,17 +177,17 @@ public class PredicatesTest {
     @Test
     public void testAllInstanceOf() {
         {
-            final List<?> list = new ArrayList<>();
+            final List<?> list = new ArrayList();
             assertTrue("Empty list should evaluate to true.", Predicates.allInstanceOf(Calendar.class).apply(list));
         }
         {
-            final List<Calendar> list = new ArrayList<>();
+            final List<Calendar> list = new ArrayList<Calendar>();
             list.add(Calendar.getInstance());
             list.add(Calendar.getInstance());
             assertTrue("List of Calendar should evaluate to true.", Predicates.allInstanceOf(Calendar.class).apply(list));
         }
         {
-            final List<Date> list = new ArrayList<>();
+            final List<Date> list = new ArrayList<Date>();
             list.add(new Date());
             list.add(new Date());
             assertFalse("List of Date should evaluate to false.", Predicates.allInstanceOf(Calendar.class).apply(list));
