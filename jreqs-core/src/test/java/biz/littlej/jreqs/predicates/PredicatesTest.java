@@ -250,4 +250,103 @@ public class PredicatesTest {
         assertTrue("Empty List should evaluate to true.", Predicates.emptyCollection().apply(new ArrayList()));
         assertFalse("Integer list should evaluate to false.", Predicates.emptyCollection().apply(Arrays.asList(new int[]{1, 2, 3})));
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testAllIterableElementsWithNullInput() {
+        Predicates.allIterableElements(Predicates.instanceOf(String.class)).apply(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testAllIterableElementsWithNullPredicate() {
+        Predicates.allIterableElements(Predicates.instanceOf(null)).apply(new ArrayList());
+    }
+
+    @Test
+    public void testAllIterableElements() {
+        {
+            final List list = new ArrayList();
+            list.add("eee");
+            list.add(new Object());
+            assertFalse("List with one not String object should evaluate to false.", Predicates.allIterableElements(Predicates.instanceOf(String.class)).apply(list));
+        }
+        {
+            final List list = new ArrayList();
+            list.add("eee");
+            list.add("aaa");
+            assertTrue("List with only String objects should evaluate to true.", Predicates.allIterableElements(Predicates.instanceOf(String.class)).apply(list));
+        }
+        {
+            assertTrue("Empty list should evaluate to true.", Predicates.allIterableElements(Predicates.instanceOf(String.class)).apply(new ArrayList()));
+        }
+        {
+            final List list = new ArrayList();
+            list.add("eee");
+            list.add("aaa");
+            assertTrue("List with only String objects should evaluate to true.", Predicates.allIterableElements(Predicates.instanceOf(CharSequence.class)).apply(list));
+        }
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testNoIterableElementsWithNullInput() {
+        Predicates.noIterableElement(Predicates.instanceOf(String.class)).apply(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testNoIterableElementsWithNullPredicate() {
+        Predicates.noIterableElement(Predicates.instanceOf(null)).apply(new ArrayList());
+    }
+
+    @Test
+    public void testNoIterableElements() {
+        {
+            final List list = new ArrayList();
+            list.add("eee");
+            list.add(new Object());
+            assertFalse("List with one String object should evaluate to false.", Predicates.noIterableElement(Predicates.instanceOf(String.class)).apply(list));
+        }
+        {
+            final List list = new ArrayList();
+            list.add(new Object());
+            list.add(new Object());
+            assertTrue("List with only objects should evaluate to true.", Predicates.noIterableElement(Predicates.instanceOf(String.class)).apply(list));
+        }
+        {
+            assertTrue("Empty list should evaluate to true.", Predicates.noIterableElement(Predicates.instanceOf(String.class)).apply(new ArrayList()));
+        }
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testOneIterableElementsWithNullInput() {
+        Predicates.oneIterableElement(Predicates.instanceOf(String.class)).apply(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testOneIterableElementsWithNullPredicate() {
+        Predicates.oneIterableElement(Predicates.instanceOf(null)).apply(new ArrayList());
+    }
+
+    @Test
+    public void testOneIterableElements() {
+        {
+            final List list = new ArrayList();
+            list.add(new Object());
+            list.add(new Object());
+            assertFalse("List with 2 not String object should evaluate to false.", Predicates.oneIterableElement(Predicates.instanceOf(String.class)).apply(list));
+        }
+        {
+            final List list = new ArrayList();
+            list.add("eee");
+            list.add("aaa");
+            assertFalse("List with 2 String objects should evaluate to false.", Predicates.oneIterableElement(Predicates.instanceOf(String.class)).apply(list));
+        }
+        {
+            assertFalse("Empty list should evaluate to false.", Predicates.oneIterableElement(Predicates.instanceOf(String.class)).apply(new ArrayList()));
+        }
+        {
+            final List list = new ArrayList();
+            list.add("eee");
+            list.add(new Object());
+            assertTrue("List with one String object should evaluate to true.", Predicates.oneIterableElement(Predicates.instanceOf(CharSequence.class)).apply(list));
+        }
+    }
 }
