@@ -20,6 +20,7 @@ import org.junit.Test;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.*;
+import java.util.regex.Pattern;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -226,6 +227,28 @@ public class PredicatesTest {
         }
     }
 
+    @Test
+    public void testNotBlankString() {
+        {
+            assertFalse("Empty String should evaluate to false.", Predicates.notBlankString().apply(""));
+        }
+        {
+            assertFalse("Null should evaluate to false.", Predicates.notBlankString().apply(null));
+        }
+        {
+            assertFalse("String with only spaces should evaluate to false.", Predicates.notBlankString().apply("   "));
+        }
+        {
+            assertFalse("String with only tabs should evaluate to false.", Predicates.notBlankString().apply("\t"));
+        }
+        {
+            assertFalse("String with only spaces and tabs should evaluate to false.", Predicates.notBlankString().apply("   \t"));
+        }
+        {
+            assertTrue("String with content should evaluate to true.", Predicates.notBlankString().apply("notEmpty"));
+        }
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void testEmptyCharSequenceWithNullInput() {
         Predicates.emptyCharSequence().apply(null);
@@ -241,6 +264,20 @@ public class PredicatesTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
+    public void testNotEmptyCharSequenceWithNullInput() {
+        Predicates.notEmptyCharSequence().apply(null);
+    }
+
+    @Test
+    public void testNotEmptyCharSequence() {
+        assertFalse("Empty String should evaluate to false.", Predicates.notEmptyCharSequence().apply(""));
+        assertTrue("String with one space character should evaluate to true.", Predicates.notEmptyCharSequence().apply(" "));
+        assertTrue("String with many spaces character should evaluate to true.", Predicates.notEmptyCharSequence().apply("    "));
+        assertTrue("String with one tab character should evaluate to true.", Predicates.notEmptyCharSequence().apply("\t"));
+        assertTrue("String with some text should evaluate to true.", Predicates.notEmptyCharSequence().apply("String with some text..."));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
     public void testEmptyCollectionWithNullInput() {
         Predicates.emptyCollection().apply(null);
     }
@@ -249,6 +286,17 @@ public class PredicatesTest {
     public void testEmptyCollection() {
         assertTrue("Empty List should evaluate to true.", Predicates.emptyCollection().apply(new ArrayList()));
         assertFalse("Integer list should evaluate to false.", Predicates.emptyCollection().apply(Arrays.asList(new int[]{1, 2, 3})));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testNotEmptyCollectionWithNullInput() {
+        Predicates.notEmptyCollection().apply(null);
+    }
+
+    @Test
+    public void testNotEmptyCollection() {
+        assertFalse("Empty List should evaluate to false.", Predicates.notEmptyCollection().apply(new ArrayList()));
+        assertTrue("Integer list should evaluate to true.", Predicates.notEmptyCollection().apply(Arrays.asList(new int[]{1, 2, 3})));
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -348,5 +396,122 @@ public class PredicatesTest {
             list.add(new Object());
             assertTrue("List with one String object should evaluate to true.", Predicates.oneIterableElement(Predicates.instanceOf(CharSequence.class)).apply(list));
         }
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testPositiveWithNullInput() {
+        Predicates.positive().apply(null);
+    }
+
+    @Test
+    public void testPositive() {
+        assertTrue("Positive integer must evaluate to true.", Predicates.positive().apply(1));
+        assertTrue("Positive long must evaluate to true.", Predicates.positive().apply(10L));
+        assertFalse("Negative integer must evaluate to true.", Predicates.positive().apply(-1));
+        assertTrue("Zero must evaluate to true.", Predicates.positive().apply(0));
+        assertTrue("Positive BigInteger must evaluate to true.", Predicates.positive().apply(BigInteger.ONE));
+        assertTrue("Positive BigDecimal must evaluate to true.", Predicates.positive().apply(BigDecimal.TEN));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testStrictlyPositiveWithNullInput() {
+        Predicates.strictlyPositive().apply(null);
+    }
+
+    @Test
+    public void testStrictlyPositive() {
+        assertTrue("Positive integer must evaluate to true.", Predicates.strictlyPositive().apply(1));
+        assertTrue("Positive long must evaluate to true.", Predicates.strictlyPositive().apply(10L));
+        assertFalse("Negative integer must evaluate to true.", Predicates.strictlyPositive().apply(-1));
+        assertFalse("Zero must evaluate to false.", Predicates.strictlyPositive().apply(0));
+        assertTrue("Positive BigInteger must evaluate to true.", Predicates.strictlyPositive().apply(BigInteger.ONE));
+        assertTrue("Positive BigDecimal must evaluate to true.", Predicates.strictlyPositive().apply(BigDecimal.TEN));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testNegativeWithNullInput() {
+        Predicates.negative().apply(null);
+    }
+
+    @Test
+    public void testNegative() {
+        assertTrue("Negative integer must evaluate to true.", Predicates.negative().apply(-1));
+        assertTrue("Negative long must evaluate to true.", Predicates.negative().apply(-10L));
+        assertFalse("Positive integer must evaluate to true.", Predicates.negative().apply(1));
+        assertTrue("Zero must evaluate to true.", Predicates.negative().apply(0));
+        assertTrue("Negative BigInteger must evaluate to true.", Predicates.negative().apply(BigInteger.ONE.negate()));
+        assertTrue("Negative BigDecimal must evaluate to true.", Predicates.negative().apply(BigDecimal.TEN.negate()));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testStrictlyNegativeWithNullInput() {
+        Predicates.strictlyNegative().apply(null);
+    }
+
+    @Test
+    public void testStrictlyNegative() {
+        assertTrue("Negative integer must evaluate to true.", Predicates.strictlyNegative().apply(-1));
+        assertTrue("Negative long must evaluate to true.", Predicates.strictlyNegative().apply(-10L));
+        assertFalse("Positive integer must evaluate to true.", Predicates.strictlyNegative().apply(1));
+        assertFalse("Zero must evaluate to false.", Predicates.strictlyNegative().apply(0));
+        assertTrue("Negative BigInteger must evaluate to true.", Predicates.strictlyNegative().apply(BigInteger.ONE.negate()));
+        assertTrue("Negative BigDecimal must evaluate to true.", Predicates.strictlyNegative().apply(BigDecimal.TEN.negate()));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testEqualToWithNullParameter() {
+        Predicates.equalTo(null);
+    }
+
+    @Test
+    public void testEqualToWithNullInput() {
+        assertFalse("null must not be equal to an Object instance.", Predicates.equalTo(new Object()).apply(null));
+    }
+
+    @Test
+    public void testEqualTo() {
+        assertFalse("Different object instances must not be equal to each other.", Predicates.equalTo(new Object()).apply(new Object()));
+        assertTrue("Same integers must be equal to each other.", Predicates.equalTo(1).apply(1));
+        assertTrue("Different integers with the same non constant (aka the JVM does not have a constant integer to represent this value) value must be equal to each other.", Predicates.equalTo(new Integer(5000)).apply(new Integer(5000)));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testContainsPatternWithNullInput() {
+        Predicates.containsPattern(Pattern.compile("hel.*")).apply(null);
+    }
+
+    @Test
+    public void testContainsPattern() {
+        assertTrue("'hello' contains 'hel*'.", Predicates.containsPattern(Pattern.compile("hel.*")).apply("hello"));
+        assertFalse("'hero' does not contain 'hel*'.", Predicates.containsPattern(Pattern.compile("hel.*")).apply("hero"));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testContainsPatternStringWithNullInput() {
+        Predicates.containsPattern("hel.*").apply(null);
+    }
+
+    @Test
+    public void testContainsPatternString() {
+        assertTrue("'hello' contains 'hel*'.", Predicates.containsPattern("hel.*").apply("hello"));
+        assertFalse("'hero' does not contain 'hel*'.", Predicates.containsPattern("hel.*").apply("hero"));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testAssignableFromWithNullInput() {
+        Predicates.assignableFrom(Object.class).apply(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testAssignableFromWithNullParameter() {
+        Predicates.assignableFrom(null);
+    }
+
+    @Test
+    public void testAssignableFrom() {
+        assertTrue("A class is assignable from itself.", Predicates.assignableFrom(Object.class).apply(Object.class));
+        assertFalse("String class is not assignable from Object class.", Predicates.assignableFrom(String.class).apply(Object.class));
+        assertTrue("Object class is assignable from String class.", Predicates.assignableFrom(Object.class).apply(String.class));
+        assertFalse("String class is not assignable from Integer class.", Predicates.assignableFrom(String.class).apply(Integer.class));
     }
 }
