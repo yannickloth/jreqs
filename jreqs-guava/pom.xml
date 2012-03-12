@@ -3,7 +3,7 @@
     <parent>
         <artifactId>jreqs-parent</artifactId>
         <groupId>biz.littlej.jreqs</groupId>
-        <version>0.1.1-SNAPSHOT</version>
+        <version>0.1.1</version>
         <relativePath>../jreqs-parent</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
