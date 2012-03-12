@@ -514,4 +514,26 @@ public class PredicatesTest {
         assertTrue("Object class is assignable from String class.", Predicates.assignableFrom(Object.class).apply(String.class));
         assertFalse("String class is not assignable from Integer class.", Predicates.assignableFrom(String.class).apply(Integer.class));
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testIsTrueWithNullInput() {
+        Predicates.isTrue().apply(null);
+    }
+
+    @Test
+    public void testIsTrue() {
+        assertTrue("True should evaluate to true", Predicates.isTrue().apply(true));
+        assertFalse("False should evaluate to false", Predicates.isTrue().apply(false));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testIsFalseWithNullInput() {
+        Predicates.isFalse().apply(null);
+    }
+
+    @Test
+    public void testIsFalse() {
+        assertTrue("False should evaluate to false", Predicates.isFalse().apply(false));
+        assertFalse("True should evaluate to false", Predicates.isFalse().apply(true));
+    }
 }

@@ -15,6 +15,8 @@
  */
 package biz.littlej.jreqs.predicates;
 
+import biz.littlej.jreqs.Reqs;
+
 import java.io.File;
 import java.util.regex.Pattern;
 
@@ -160,5 +162,23 @@ public final class Predicates {
 
     public static Predicate<Iterable<?>> noIterableElement(final Predicate<?> predicateParam) {
         return new IterableElementsPredicate(predicateParam, IterableElementsPredicate.Matching.NONE);
+    }
+
+    public static Predicate<Boolean> isTrue() {
+        return new Predicate<Boolean>() {
+            public boolean apply(final Boolean inputParam) {
+                Reqs.parameterCondition(Predicates.notNull(), inputParam, "Input parameter must not be null.");
+                return inputParam;
+            }
+        };
+    }
+
+    public static Predicate<Boolean> isFalse() {
+        return new Predicate<Boolean>() {
+            public boolean apply(final Boolean inputParam) {
+                Reqs.parameterCondition(Predicates.notNull(), inputParam, "Input parameter must not be null.");
+                return false==inputParam;
+            }
+        };
     }
 }
