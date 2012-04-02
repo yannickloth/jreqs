@@ -12,7 +12,7 @@
     </parent>
     <name>jreqs</name>
     <description>jreqs root project</description>
-    <url>https://github.com/yannickloth/jreqs</url>
+    <url>http://littlej.github.com/jreqs</url>
     <modules>
         <module>jreqs-parent</module>
         <module>jreqs-core</module>

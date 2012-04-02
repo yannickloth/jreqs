@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
     <name>jreqs-guava</name>
     <description>jreqs-guava module</description>
-    <url>https://github.com/yannickloth/jreqs</url>
+    <url>http://littlej.github.com/jreqs</url>
     <licenses>
         <license>
             <name>Apache 2</name>

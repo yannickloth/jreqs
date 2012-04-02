@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
     <name>jreqs-parent</name>
     <description>jreqs parent project</description>
-    <url>https://github.com/yannickloth/jreqs</url>
+    <url>http://littlej.github.com/jreqs</url>
     <licenses>
         <license>
             <name>Apache 2</name>
