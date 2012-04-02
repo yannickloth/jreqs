@@ -38,7 +38,7 @@ The example above shows the use of all requirement types: parameterCondition, pr
 
 ## Why
 
-> Because with IT, *everyting*, and especially the Devil, is inside the details.
+> Because with IT, *everything*, and especially the Devil, is inside the details.
 
 > Because I believe that software craftsmanship is very complex, even to very smart people.
 
