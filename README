@@ -1,5 +1,0 @@
-jreqs is a small library that provides methods to check for requirements at runtime in Java applications.
-
-It uses the concept of predicate, inspired by those of Google Guice.
-
-The code of all jreqs modules is copyright of Yannick Loth, Belgium, and is licensed under the Apache License, Version 2.0.
