@@ -12,9 +12,11 @@ Nothing's worth an immediate look at the code, so here it is:
 
 ```java
 ...
+import biz.littlej.jreqs.Reqs;
 import static biz.littlej.jreqs.Reqs.parameterCondition;
 import static biz.littlej.jreqs.Reqs.preCondition;
 import static biz.littlej.jreqs.Reqs.postCondition;
+import biz.littlej.jreqs.predicates.Predicates;
 import static biz.littlej.jreqs.predicates.Predicates.notBlankString;
 import static biz.littlej.jreqs.predicates.Predicates.existingFile;
 import static biz.littlej.jreqs.predicates.PredicateOperations.not;
