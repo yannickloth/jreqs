@@ -287,7 +287,7 @@ My name is Yannick LOTH.  I'm a Belgian freelance JavaEE/Web expert/architect.
 <table>
   <thead>
     <tr>
-      <td colspan=2>Web presence</td>
+      <td colspan=2><strong>Web presence</strong></td>
     </tr>
   </thead>
   <tbody>
