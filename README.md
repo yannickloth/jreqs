@@ -87,17 +87,12 @@ an unchecked exception is thrown to indicate the presence of a bug.
 
 ### Exception hierarchy
 
-> RuntimeException
->
-> > InvalidArgumentException
-> >
-> > IllegalStateException
-> >
-> > > RequirementException
-> > >
-> > > > PreConditionException
-> > > >
-> > > > PostConditionException
+* `RuntimeException`
+    * `InvalidArgumentException`
+    * `IllegalStateException`
+        * `RequirementException`
+            * `PreConditionException`
+            * `PostConditionException`
 
 ## Artifacts
 
@@ -126,8 +121,8 @@ Clone the git repository using the URL on the Github home page:
 
 ## Editing the code in an IDE
 
-
-I'm using IntelliJ IDEA 11. Simply import the projects. That's it ;)
+I'm using IntelliJ IDEA 11, but as there's nothing IDE-specific in the source code, the project should be editable in any IDE (IntelliJ IDEA, Netbeans, Eclipse, JDeveloper - try to avoid Notepad =D ).
+Simply import the projects.
 
 ## Using jreqs in your project
 
