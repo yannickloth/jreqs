@@ -41,7 +41,7 @@ The example above shows the use of all requirement types: parameterCondition, pr
 
 > Because I believe that software craftsmanship is very complex, even to very smart people.
 
-I think one should follow some programming principles, like the following ones (most of which are taken from "The Elements Of Java Style" (Allan Vermeulen et al., ISBN 978-0-521-77768-1, Cambridge University Press):
+I think one should follow some programming principles, like the following ones (most of which are taken from "The Elements Of Java Style", by Allan Vermeulen et al., ISBN 978-0-521-77768-1, Cambridge University Press):
 
 * Program by contract.
 * Use assertions to catch logic errors in your code.
@@ -108,7 +108,7 @@ The structure of a requirement is constant across the four types:
 * You specify the object instance on which the predicate will be applied
 * You specify the message that will be part of the unchecked exception that is thrown if the predicate doesn't apply (returns false) on the specified object instance
 
-If the system state of the system is fine nothing happens.  If the system state is wrong (some condition is not verified),
+If the system state is fine nothing happens.  If the system state is wrong (some condition is not verified),
 an unchecked exception is thrown to indicate the presence of a bug.
 
 ### Exceptions that are thrown
