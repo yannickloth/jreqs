@@ -87,17 +87,15 @@ an unchecked exception is thrown to indicate the presence of a bug.
 
 ### Exception hierarchy
 
-RuntimeException
-
-> IllegalStateException
+> RuntimeException
 >
-> > RequirementException
+> > InvalidArgumentException
+> > IllegalStateException
 > >
-> > > PreConditionException
-> > > PostConditionException
-> >
->
-> InvalidArgumentException
+> > > RequirementException
+> > >
+> > > > PreConditionException
+> > > > PostConditionException
 
 ## Artifacts
 
