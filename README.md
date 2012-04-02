@@ -2,9 +2,9 @@
 
 jreqs is a small library that provides methods to implement 1-line runtime checks for requirements in Java applications.
 
-It uses the concept of predicate, inspired by those of Google Guice.
+It uses the concept of predicate, inspired by those of [Google Guava](http://code.google.com/p/guava-libraries/ "Guava libraries").
 
-The code of all jreqs modules is copyright of Yannick Loth, Belgium, and is licensed under the Apache License, Version 2.0.
+The code of all jreqs modules is copyright of Yannick Loth, Belgium, and is licensed under the *Apache License, Version 2.0*.
 
 ## Code example
 
@@ -64,6 +64,7 @@ unexpected state.
 
 By throwing exceptions as soon as you know that the system won't be able to operate as specified (which means as
 soon as you detect a bug using some checks), you make sure:
+
 * that the system won't waste resources trying to do things which you already know will not work.
 * that the system puts itself in an unexpected invalid state.
 * that you'll be able to trace the origin of the trouble.  If you detect the unexpected state later, maybe too many other
@@ -131,7 +132,7 @@ The package `biz.littlej.jreqs.predicates` contains various useful predicate cla
 
 The class `biz.littlej.jreqs.Reqs` provides the requirements static methods.
 
-Static import these classes' methods to avoid prepending of `Reqs\.` or `Predicates\.` everywhere in your code.  That will make the code cleaner and easier to read.
+Static import these classes' methods to avoid prepending of `Reqs.` or `Predicates.` everywhere in your code.  That will make the code cleaner and easier to read.
 
 ```java
 ...
@@ -233,15 +234,15 @@ Amongst other things:
 
 ## FAQ (Frequently Asked Questions)
 
-1.  Why don't you simply use Java's `assert` ?
+1.  **Why don't you simply use Java's `assert` ?**
 
     As stated above, assertions may be disabled by system administrators.
 
-1.  How can I disable (all the checks done with) jreqs ?
+1.  **How can I disable (all the checks done with) jreqs ?**
 
     jreqs is not meant to be disabled.  Use assertions.  Use libraries that don't use jreqs.
 
-1.  In what kind of methods should I check conditions ?
+1.  **In what kind of methods should I check conditions ?**
 
     You really should check conditions in *all published methods (public and protected)*.  These are the ones that will be
     (mis-)used by developers who use your code.  These are the entry points into your code.
@@ -249,7 +250,7 @@ Amongst other things:
     If you're a conscientious developer, you hate when people find bugs in your code.  By validating everything that
     is passed to your code, you'll make it *way much harder* to misuse it (I wouldn't say impossible, as in programming nothing's impossible).
 
-1.  Isn't condition checking wasting lots of resources ?
+1.  **Isn't condition checking wasting lots of resources ?**
 
     Condition checking *is* using resources.  You have to find the right balance between the risk of putting the system in
     an invalid state and *using* resources to ensure state validity.  I consider that condition checks are not wasting resources, only using them.
@@ -257,18 +258,22 @@ Amongst other things:
     If it's that important to you, some checks may be deferred or depend on the fact that other conditions are verified, so maybe you won't need to execute
     them all at once.  Think about the sequence of condition checks.
 
-1.  How to request a new feature or to report a bug ?
+1.  **How to request a new feature or to report a bug ?**
 
     Login to GitHub and create a new issue: [https://github.com/LittleJ/jreqs/issues](https://github.com/LittleJ/jreqs/issues "jreqs issues")
 
-1.  How to get support for jreqs ?
+1.  **How can I help ?**
+
+    You're always welcome to help.  See my contact info below.  Make a pull request on GitHub.
+
+1.  **How to get support for jreqs ?**
 
     jreqs isn't that complex, so there's no support plan.  But if really necessary, I'd be glad to help, feel free to contact me.  I'll be happy to help you in German, French, English and maybe even Dutch (depends on how blonde you are, I really need great motivation to speak Dutch well =D ).
 
-1.  How can I buy jreqs ?
+1.  **How can I buy jreqs ?**
 
     Hmmm.  With lots of money.  See my contact info below.
-    (Actually that is not a FAQ, but maybe it's giving ideas to some people... =D )
+    (Actually that is not a FAQ, but maybe it's giving ideas to some people... =D)
 
 ## About the author of this library
 
