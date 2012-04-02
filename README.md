@@ -201,6 +201,8 @@ Simply add the following dependency(ies) to your Maven project:
 
 Second release.  Most stuff in the core is unit tested.
 
+Javadoc: [http://littlej.github.com/jreqs/javadoc/0.1.1/](http://littlej.github.com/jreqs/javadoc/0.1.1/ "Javadoc")
+
 ### 0.1.0
 
 Initial release, work going on.
