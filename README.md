@@ -139,40 +139,15 @@ Static import these classes' methods to avoid prepending of `Reqs.` or `Predicat
 
 ```java
 ...
-import static biz.littlej.jreqs.Reqs.*;
-import static biz.littlej.jreqs.predicates.Predicates.*;
-import static biz.littlej.jreqs.predicates.PredicateOperations.not;
+import static biz.littlej.jreqs.Reqs.*; // import all static methods from Reqs
+import static biz.littlej.jreqs.predicates.Predicates.*; // import all static methods from Predicates
+import static biz.littlej.jreqs.predicates.PredicateOperations.not; // only import the not() static method
 ```
 
 ## Artifacts
 
 Each release build creates binary/class, source and javadoc jar files which are deployed to Maven Central repository.
 You may find them at this URL: [http://search.maven.org/#search%7Cga%7C1%7Cjreqs](http://search.maven.org/#search%7Cga%7C1%7Cjreqs "Search results on Maven Central repo")
-
-## Building from Source
-
-### Prerequisites
-
-* Java 6
-* Maven 3
-* Git
-* A working internet connection
-
-### Checking out the code
-
-Clone the git repository using the URL on the Github home page:
-
-    $ git clone git@github.com:LittleJ/jreqs.git
-    $ cd jreqs
-
-### Build on command line
-
-    $ mvn install
-
-## Editing the code in an IDE
-
-I'm using IntelliJ IDEA 11, but as there's nothing IDE-specific in the source code, the project should be editable in any IDE (IntelliJ IDEA, Netbeans, Eclipse, JDeveloper - try to avoid Notepad =D ).
-Simply import the projects.
 
 ## Using jreqs in your project
 
@@ -217,8 +192,8 @@ Amongst other things:
 <table>
   <thead>
     <tr>
-      <td>Priority</td>
-      <td>Description</td>
+      <td><strong>Priority</strong></td>
+      <td><strong>Description</strong></td>
     </tr>
   </thead>
   <tbody>
@@ -236,6 +211,31 @@ Amongst other things:
     </tr>
   </tbody>
 <table>
+
+## Building from Source
+
+### Prerequisites
+
+* Java 6
+* Maven 3
+* Git
+* A working internet connection
+
+### Checking out the code
+
+Clone the git repository using the URL on the Github home page:
+
+    $ git clone git@github.com:LittleJ/jreqs.git
+    $ cd jreqs
+
+### Build on command line
+
+    $ mvn install
+
+## Editing the code in an IDE
+
+I'm using IntelliJ IDEA 11, but as there's nothing IDE-specific in the source code, the project should be editable in any IDE (IntelliJ IDEA, Netbeans, Eclipse, JDeveloper - try to avoid Notepad =D ).
+Simply import the projects.
 
 ## FAQ (Frequently Asked Questions)
 
