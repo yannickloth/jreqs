@@ -22,6 +22,7 @@ import static biz.littlej.jreqs.predicates.Predicates.existingFile;
 import static biz.littlej.jreqs.predicates.PredicateOperations.not;
 ...
 public File createSomeFile(final String fileNameParam) {
+    //let's check if the fileNameParam parameter is not a blank String:
     parameterCondition(notBlankString(), fileNameParam, "File name parameter must not be null to create a file.");
     preCondition(not(existingFile()), fileNameParam, "No file with the specified name parameter must exist to create a new file with that name.");
     ...some logic...
