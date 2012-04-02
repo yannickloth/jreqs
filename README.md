@@ -90,11 +90,13 @@ an unchecked exception is thrown to indicate the presence of a bug.
 > RuntimeException
 >
 > > InvalidArgumentException
+> >
 > > IllegalStateException
 > >
 > > > RequirementException
 > > >
 > > > > PreConditionException
+> > > >
 > > > > PostConditionException
 
 ## Artifacts
