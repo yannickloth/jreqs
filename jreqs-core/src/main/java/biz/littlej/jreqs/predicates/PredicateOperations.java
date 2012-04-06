@@ -25,9 +25,9 @@ public final class PredicateOperations {
     /**
      * Returns a predicate that evaluates to the opposite value of the specified predicate, like the boolean operation NOT.
      *
-     * @param originalPredicate
-     * @param <T>
-     * @return
+     * @param originalPredicate The predicate that must be negated.
+     * @param <T> The type parameter.
+     * @return A predicate that evaluates to the opposite of the specified original predicate.
      */
     public static <T> Predicate<T> not(final Predicate<T> originalPredicate) {
         if (originalPredicate == null) {

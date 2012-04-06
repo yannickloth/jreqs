@@ -40,5 +40,5 @@ public enum StringPredicates implements Predicate<String>, Serializable {
         public boolean apply(final String inputParam) {
             return inputParam == null || inputParam.trim().isEmpty();
         }
-    };
+    }
 }

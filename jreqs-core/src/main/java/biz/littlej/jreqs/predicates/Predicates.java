@@ -18,6 +18,8 @@ package biz.littlej.jreqs.predicates;
 import biz.littlej.jreqs.Reqs;
 
 import java.io.File;
+import java.util.Calendar;
+import java.util.Collection;
 import java.util.regex.Pattern;
 
 import static biz.littlej.jreqs.predicates.PredicateOperations.not;
@@ -32,12 +34,12 @@ import static biz.littlej.jreqs.predicates.PredicateOperations.not;
  * @since 0.1.0
  */
 public final class Predicates {
-    public static <T> Predicate<T> past() {
-        return (Predicate<T>) DateTimePredicates.PAST;
+    public static Predicate<Calendar> past() {
+        return DateTimePredicates.PAST;
     }
 
-    public static <T> Predicate<T> future() {
-        return (Predicate<T>) DateTimePredicates.FUTURE;
+    public static Predicate<Calendar> future() {
+        return DateTimePredicates.FUTURE;
     }
 
     public static <T> Predicate<T> isNull() {
@@ -48,12 +50,12 @@ public final class Predicates {
         return not((Predicate<T>) ObjectPredicates.NULL);
     }
 
-    public static <T> Predicate<T> notEmptyCollection() {
-        return not((Predicate<T>) CollectionPredicates.EMPTY);
+    public static  Predicate<Collection> notEmptyCollection() {
+        return not(CollectionPredicates.EMPTY);
     }
 
-    public static <T> Predicate<T> emptyCollection() {
-        return (Predicate<T>) CollectionPredicates.EMPTY;
+    public static Predicate<Collection> emptyCollection() {
+        return CollectionPredicates.EMPTY;
     }
 
     public static <T> Predicate<T> alwaysTrue() {
@@ -177,7 +179,7 @@ public final class Predicates {
         return new Predicate<Boolean>() {
             public boolean apply(final Boolean inputParam) {
                 Reqs.parameterCondition(Predicates.notNull(), inputParam, "Input parameter must not be null.");
-                return false==inputParam;
+                return !inputParam;
             }
         };
     }

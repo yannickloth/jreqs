@@ -42,7 +42,7 @@ public final class IterableElementsPredicate implements Predicate<Iterable<?>>, 
         /**
          * The predicate must evaluate to {@code true} for exactly one iterable element.
          */
-        ONE;
+        ONE
     }
 
     /**
