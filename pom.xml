@@ -17,6 +17,7 @@
         <module>jreqs-parent</module>
         <module>jreqs-core</module>
         <module>jreqs-guava</module>
+        <module>jreqs-beanvalidation</module>
     </modules>
     <licenses>
         <license>
