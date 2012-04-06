@@ -22,6 +22,7 @@ import static biz.littlej.jreqs.predicates.Predicates.existingFile;
 import static biz.littlej.jreqs.predicates.PredicateOperations.not;
 ...
 public File createSomeFile(final String fileNameParam) {
+    //let's check if the fileNameParam parameter is not a blank String:
     parameterCondition(notBlankString(), fileNameParam, "File name parameter must not be null to create a file.");
     preCondition(not(existingFile()), fileNameParam, "No file with the specified name parameter must exist to create a new file with that name.");
     ...some logic...
@@ -37,11 +38,11 @@ The example above shows the use of all requirement types: parameterCondition, pr
 
 ## Why
 
-> Because with IT, *everyting*, and especially the Devil, is inside the details.
+> Because with IT, *everything*, and especially the Devil, is inside the details.
 
 > Because I believe that software craftsmanship is very complex, even to very smart people.
 
-I think one should follow some programming principles, like the following ones (most of which are taken from "The Elements Of Java Style" (Allan Vermeulen et al., ISBN 978-0-521-77768-1, Cambridge University Press):
+I think one should follow some programming principles, like the following ones (most of which are taken from "The Elements Of Java Style", by Allan Vermeulen et al., ISBN 978-0-521-77768-1, Cambridge University Press):
 
 * Program by contract.
 * Use assertions to catch logic errors in your code.
@@ -108,7 +109,7 @@ The structure of a requirement is constant across the four types:
 * You specify the object instance on which the predicate will be applied
 * You specify the message that will be part of the unchecked exception that is thrown if the predicate doesn't apply (returns false) on the specified object instance
 
-If the system state of the system is fine nothing happens.  If the system state is wrong (some condition is not verified),
+If the system state is fine nothing happens.  If the system state is wrong (some condition is not verified),
 an unchecked exception is thrown to indicate the presence of a bug.
 
 ### Exceptions that are thrown
@@ -138,40 +139,15 @@ Static import these classes' methods to avoid prepending of `Reqs.` or `Predicat
 
 ```java
 ...
-import static biz.littlej.jreqs.Reqs.*;
-import static biz.littlej.jreqs.predicates.Predicates.*;
-import static biz.littlej.jreqs.predicates.PredicateOperations.not;
+import static biz.littlej.jreqs.Reqs.*; // import all static methods from Reqs
+import static biz.littlej.jreqs.predicates.Predicates.*; // import all static methods from Predicates
+import static biz.littlej.jreqs.predicates.PredicateOperations.not; // only import the not() static method
 ```
 
 ## Artifacts
 
 Each release build creates binary/class, source and javadoc jar files which are deployed to Maven Central repository.
 You may find them at this URL: [http://search.maven.org/#search%7Cga%7C1%7Cjreqs](http://search.maven.org/#search%7Cga%7C1%7Cjreqs "Search results on Maven Central repo")
-
-## Building from Source
-
-### Prerequisites
-
-* Java 6
-* Maven 3
-* Git
-* A working internet connection
-
-### Checking out the code
-
-Clone the git repository using the URL on the Github home page:
-
-    $ git clone git@github.com:LittleJ/jreqs.git
-    $ cd jreqs
-
-### Build on command line
-
-    $ mvn install
-
-## Editing the code in an IDE
-
-I'm using IntelliJ IDEA 11, but as there's nothing IDE-specific in the source code, the project should be editable in any IDE (IntelliJ IDEA, Netbeans, Eclipse, JDeveloper - try to avoid Notepad =D ).
-Simply import the projects.
 
 ## Using jreqs in your project
 
@@ -201,6 +177,8 @@ Simply add the following dependency(ies) to your Maven project:
 
 Second release.  Most stuff in the core is unit tested.
 
+Javadoc: [http://littlej.github.com/jreqs/javadoc/0.1.1/](http://littlej.github.com/jreqs/javadoc/0.1.1/ "Javadoc")
+
 ### 0.1.0
 
 Initial release, work going on.
@@ -214,8 +192,8 @@ Amongst other things:
 <table>
   <thead>
     <tr>
-      <td>Priority</td>
-      <td>Description</td>
+      <td><strong>Priority</strong></td>
+      <td><strong>Description</strong></td>
     </tr>
   </thead>
   <tbody>
@@ -233,6 +211,31 @@ Amongst other things:
     </tr>
   </tbody>
 <table>
+
+## Building from Source
+
+### Prerequisites
+
+* Java 6
+* Maven 3
+* Git
+* A working internet connection
+
+### Checking out the code
+
+Clone the git repository using the URL on the Github home page:
+
+    $ git clone git@github.com:LittleJ/jreqs.git
+    $ cd jreqs
+
+### Build on command line
+
+    $ mvn install
+
+## Editing the code in an IDE
+
+I'm using IntelliJ IDEA 11, but as there's nothing IDE-specific in the source code, the project should be editable in any IDE (IntelliJ IDEA, Netbeans, Eclipse, JDeveloper - try to avoid Notepad =D ).
+Simply import the projects.
 
 ## FAQ (Frequently Asked Questions)
 
@@ -284,7 +287,7 @@ My name is Yannick LOTH.  I'm a Belgian freelance JavaEE/Web expert/architect.
 <table>
   <thead>
     <tr>
-      <td colspan=2>Web presence</td>
+      <td colspan=2><strong>Web presence</strong></td>
     </tr>
   </thead>
   <tbody>
