@@ -15,6 +15,7 @@
     <url>http://littlej.github.com/jreqs</url>
     <modules>
         <module>jreqs-parent</module>
+        <module>jreqs-bom</module>
         <module>jreqs-core</module>
         <module>jreqs-guava</module>
         <module>jreqs-beanvalidation</module>

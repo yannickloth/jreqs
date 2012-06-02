@@ -2,16 +2,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<parent>
-		<artifactId>jreqs-parent</artifactId>
+		<artifactId>jreqs</artifactId>
 		<groupId>biz.littlej.jreqs</groupId>
 		<version>0.1.2-SNAPSHOT</version>
-		<relativePath>../jreqs-parent</relativePath>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>jreqs-beanvalidation</artifactId>
-	<packaging>jar</packaging>
-	<name>jreqs-beanvalidation</name>
-	<description>jreqs-beanvalidation module</description>
+	<artifactId>jreqs-bom</artifactId>
+	<packaging>pom</packaging>
+	<name>jreqs-bom</name>
+	<description>jreqs bill of materials project</description>
 	<url>http://littlej.github.com/jreqs</url>
 	<licenses>
 		<license>
@@ -39,29 +38,39 @@
 		<dependencies>
 			<dependency>
 				<groupId>biz.littlej.jreqs</groupId>
-				<artifactId>jreqs-bom</artifactId>
+				<artifactId>jreqs-core</artifactId>
 				<version>${project.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${version.guava}</version>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${version.junit}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.validation</groupId>
+				<artifactId>validation-api</artifactId>
+				<version>${version.beanValidation}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>${version.hibernateValidator}</version>
+				<scope>runtime</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-	<dependencies>
-		<dependency>
-			<groupId>biz.littlej.jreqs</groupId>
-			<artifactId>jreqs-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-		</dependency>
-	</dependencies>
+	<properties>
+		<version.guava>11.0.2</version.guava>
+		<version.hibernateValidator>4.2.0.Final</version.hibernateValidator>
+		<version.beanValidation>1.0.0.GA</version.beanValidation>
+		<version.junit>4.10</version.junit>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 </project>

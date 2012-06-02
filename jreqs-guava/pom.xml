@@ -1,47 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>jreqs-parent</artifactId>
-        <groupId>biz.littlej.jreqs</groupId>
-        <version>0.1.2-SNAPSHOT</version>
-        <relativePath>../jreqs-parent</relativePath>
-    </parent>
-    <modelVersion>4.0.0</modelVersion>
-    <artifactId>jreqs-guava</artifactId>
-    <packaging>jar</packaging>
-    <name>jreqs-guava</name>
-    <description>jreqs-guava module</description>
-    <url>http://littlej.github.com/jreqs</url>
-    <licenses>
-        <license>
-            <name>Apache 2</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-            <comments>A business-friendly OSS license</comments>
-        </license>
-    </licenses>
-    <scm>
-        <url>https://github.com/LittleJ/jreqs</url>
-        <connection>scm:git:https://yannickloth@github.com/LittleJ/jreqs.git</connection>
-        <developerConnection>scm:git:https://yannickloth@github.com/LittleJ/jreqs.git</developerConnection>
-    </scm>
-    <developers>
-        <developer>
-            <name>Yannick LOTH</name>
-            <timezone>+1</timezone>
-            <email>yannick AT littlej.biz</email>
-            <organization>LittleJ</organization>
-            <organizationUrl>http://www.littlej.biz</organizationUrl>
-        </developer>
-    </developers>
-    <dependencies>
-        <dependency>
-            <groupId>biz.littlej.jreqs</groupId>
-            <artifactId>jreqs-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-        </dependency>
-    </dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<artifactId>jreqs-parent</artifactId>
+		<groupId>biz.littlej.jreqs</groupId>
+		<version>0.1.2-SNAPSHOT</version>
+		<relativePath>../jreqs-parent</relativePath>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>jreqs-guava</artifactId>
+	<packaging>jar</packaging>
+	<name>jreqs-guava</name>
+	<description>jreqs-guava module</description>
+	<url>http://littlej.github.com/jreqs</url>
+	<licenses>
+		<license>
+			<name>Apache 2</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+			<comments>A business-friendly OSS license</comments>
+		</license>
+	</licenses>
+	<scm>
+		<url>https://github.com/LittleJ/jreqs</url>
+		<connection>scm:git:https://yannickloth@github.com/LittleJ/jreqs.git</connection>
+		<developerConnection>scm:git:https://yannickloth@github.com/LittleJ/jreqs.git</developerConnection>
+	</scm>
+	<developers>
+		<developer>
+			<name>Yannick LOTH</name>
+			<timezone>+1</timezone>
+			<email>yannick AT littlej.biz</email>
+			<organization>LittleJ</organization>
+			<organizationUrl>http://www.littlej.biz</organizationUrl>
+		</developer>
+	</developers>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>biz.littlej.jreqs</groupId>
+				<artifactId>jreqs-bom</artifactId>
+				<version>${project.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>biz.littlej.jreqs</groupId>
+			<artifactId>jreqs-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+		</dependency>
+	</dependencies>
 </project>
