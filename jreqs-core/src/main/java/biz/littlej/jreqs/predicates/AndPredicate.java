@@ -18,6 +18,7 @@ package biz.littlej.jreqs.predicates;
 import biz.littlej.jreqs.Reqs;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 import static biz.littlej.jreqs.predicates.Predicates.notNull;
 
@@ -32,7 +33,18 @@ public final class AndPredicate<T> implements Predicate<T>, Serializable {
     private final Predicate<T> firstMemberPredicate;
     private final Predicate<T> secondeMemberPredicate;
 
-    public AndPredicate(final Predicate<T> firstMemberPredicateParam, final Predicate<T> secondMemberPredicateParam) {
+    public static <T> AndPredicate getInstance(final Predicate<T> firstMemberPredicateParam, final Predicate<T> secondMemberPredicateParam) {
+        final int h = Arrays.deepHashCode(new Predicate[]{firstMemberPredicateParam, secondMemberPredicateParam});
+        final AndPredicate<T> p = PredicateCache.getPredicate(h, AndPredicate.class);
+        if (p != null) {
+            return p;
+        }
+        final AndPredicate<T> predicate = new AndPredicate<T>(firstMemberPredicateParam, secondMemberPredicateParam);
+        PredicateCache.registerNewPredicate(h, predicate);
+        return predicate;
+    }
+
+    private AndPredicate(final Predicate<T> firstMemberPredicateParam, final Predicate<T> secondMemberPredicateParam) {
         Reqs.parameterCondition(notNull(), firstMemberPredicateParam, "First member predicate object parameter must not be null.");
         Reqs.parameterCondition(notNull(), secondMemberPredicateParam, "Second member predicate object parameter must not be null.");
         firstMemberPredicate = firstMemberPredicateParam;

@@ -17,6 +17,7 @@ package biz.littlej.jreqs.beanvalidation;
 
 
 import biz.littlej.jreqs.predicates.Predicate;
+import biz.littlej.jreqs.predicates.PredicateCache;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -38,14 +39,50 @@ import static biz.littlej.jreqs.predicates.Predicates.notNull;
  * @param <T> The type parameter.
  */
 public class BeanValidationPredicate<T> implements Predicate<T> {
+    /**
+     * The validator factory that is used by this predicate instance.
+     */
     private final ValidatorFactory validatorFactory;
+    /**
+     * Will contain the constraint violations if some are found while applying the predicate to an object.  As the
+     * {@code apply} method only returns a boolean, this allows the user to retrieve the constraints that are violated.
+     */
     private final Map<T, Set<ConstraintViolation<T>>> violations = new WeakHashMap<T, Set<ConstraintViolation<T>>>();
+
+    /**
+     * Static factory method.
+     *
+     * @param <T> The type parameter.
+     * @return A new instance with the default validator factory.
+     */
+    public static <T> BeanValidationPredicate<T> getInstance() {
+        return getInstance(null);
+    }
+
+    /**
+     * Static factory method.
+     *
+     * @param <T>                   The type parameter.
+     * @param validatorFactoryParam The validator factory.  If the specified validator factory is {@code null},
+     *                              the default validator factory is used.
+     * @return A new instance with the specified validator factory.
+     */
+    public static synchronized <T> BeanValidationPredicate<T> getInstance(final ValidatorFactory validatorFactoryParam) {
+        final BeanValidationPredicate<T> p = PredicateCache.getPredicate(validatorFactoryParam, BeanValidationPredicate.class);
+        if (p != null) {
+            return p;
+        }
+        final BeanValidationPredicate<T> predicate = new BeanValidationPredicate<T>(validatorFactoryParam);
+        PredicateCache.registerNewPredicate(predicate.validatorFactory, predicate);
+        return predicate;
+    }
+
 
     /**
      * Default constructor.
      * Calls {@code this(null);}. Thus, the default validator factory will be used to validate beans.
      */
-    public BeanValidationPredicate() {
+    protected BeanValidationPredicate() {
         this(null);
     }
 
@@ -56,7 +93,7 @@ public class BeanValidationPredicate<T> implements Predicate<T> {
      *                              If {@code null}, {@code Validation.buildDefaultValidatorFactory()} is used to get
      *                              the default validator factory.
      */
-    public BeanValidationPredicate(final ValidatorFactory validatorFactoryParam) {
+    protected BeanValidationPredicate(final ValidatorFactory validatorFactoryParam) {
         if (validatorFactoryParam == null) {
             validatorFactory = Validation.buildDefaultValidatorFactory();
         } else {

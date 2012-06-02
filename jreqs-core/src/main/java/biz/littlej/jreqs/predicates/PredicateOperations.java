@@ -26,7 +26,7 @@ public final class PredicateOperations {
      * Returns a predicate that evaluates to the opposite value of the specified predicate, like the boolean operation NOT.
      *
      * @param originalPredicate The predicate that must be negated.
-     * @param <T> The type parameter.
+     * @param <T>               The type parameter.
      * @return A predicate that evaluates to the opposite of the specified original predicate.
      */
     public static <T> Predicate<T> not(final Predicate<T> originalPredicate) {
@@ -41,22 +41,22 @@ public final class PredicateOperations {
     }
 
     public static <T> Predicate<T> and(final Predicate<T> firstMemberPredicateParam, final Predicate<T> secondMemberPredicateParam) {
-        return new AndPredicate<T>(firstMemberPredicateParam, secondMemberPredicateParam);
+        return AndPredicate.getInstance(firstMemberPredicateParam, secondMemberPredicateParam);
     }
 
     public static <T> Predicate<T> nand(final Predicate<T> firstMemberPredicateParam, final Predicate<T> secondMemberPredicateParam) {
-        return not(new AndPredicate<T>(firstMemberPredicateParam, secondMemberPredicateParam));
+        return not(AndPredicate.getInstance(firstMemberPredicateParam, secondMemberPredicateParam));
     }
 
     public static <T> Predicate<T> or(final Predicate<T> firstMemberPredicateParam, final Predicate<T> secondMemberPredicateParam) {
-        return new OrPredicate<T>(firstMemberPredicateParam, secondMemberPredicateParam);
+        return OrPredicate.getInstance(firstMemberPredicateParam, secondMemberPredicateParam);
     }
 
     public static <T> Predicate<T> nor(final Predicate<T> firstMemberPredicateParam, final Predicate<T> secondMemberPredicateParam) {
-        return not(new OrPredicate<T>(firstMemberPredicateParam, secondMemberPredicateParam));
+        return not(OrPredicate.getInstance(firstMemberPredicateParam, secondMemberPredicateParam));
     }
 
     public static <T> Predicate<T> xor(final Predicate<T> firstMemberPredicateParam, final Predicate<T> secondMemberPredicateParam) {
-        return new XorPredicate<T>(firstMemberPredicateParam, secondMemberPredicateParam);
+        return OrPredicate.getInstance(firstMemberPredicateParam, secondMemberPredicateParam);
     }
 }

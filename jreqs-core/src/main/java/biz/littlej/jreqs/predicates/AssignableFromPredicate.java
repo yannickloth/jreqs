@@ -29,7 +29,17 @@ public final class AssignableFromPredicate implements Predicate<Class<?>>, Seria
     private static final long serialVersionUID = 0;
     private final Class<?> clazz;
 
-    public AssignableFromPredicate(final Class<?> classParam) {
+    public static AssignableFromPredicate getInstance(final Class<?> classParam) {
+        final AssignableFromPredicate p = PredicateCache.getPredicate(classParam, AssignableFromPredicate.class);
+        if (p != null) {
+            return p;
+        }
+        final AssignableFromPredicate predicate = new AssignableFromPredicate(classParam);
+        PredicateCache.registerNewPredicate(predicate.clazz, predicate);
+        return predicate;
+    }
+
+    private AssignableFromPredicate(final Class<?> classParam) {
         Reqs.parameterCondition(Predicates.notNull(), classParam, "Class parameter must not be null.");
         clazz = classParam;
     }

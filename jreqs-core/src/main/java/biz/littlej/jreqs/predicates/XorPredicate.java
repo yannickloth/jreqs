@@ -19,6 +19,7 @@ package biz.littlej.jreqs.predicates;
 import biz.littlej.jreqs.Reqs;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 /**
  * Returns a predicate that evaluates to {@code true} if at exactly one of the specified predicates also does for the same input, like the logical XOR.
@@ -31,7 +32,18 @@ public final class XorPredicate<T> implements Predicate<T>, Serializable {
     private final Predicate<T> firstMemberPredicate;
     private final Predicate<T> secondeMemberPredicate;
 
-    public XorPredicate(final Predicate<T> firstMemberPredicateParam, final Predicate<T> secondMemberPredicateParam) {
+    public static <T> XorPredicate getInstance(final Predicate<T> firstMemberPredicateParam, final Predicate<T> secondMemberPredicateParam) {
+        final int h = Arrays.deepHashCode(new Predicate[]{firstMemberPredicateParam, secondMemberPredicateParam});
+        final XorPredicate<T> p = PredicateCache.getPredicate(h, XorPredicate.class);
+        if (p != null) {
+            return p;
+        }
+        final XorPredicate<T> predicate = new XorPredicate<T>(firstMemberPredicateParam, secondMemberPredicateParam);
+        PredicateCache.registerNewPredicate(h, predicate);
+        return predicate;
+    }
+
+    private XorPredicate(final Predicate<T> firstMemberPredicateParam, final Predicate<T> secondMemberPredicateParam) {
         Reqs.parameterCondition(Predicates.notNull(), firstMemberPredicateParam, "First member predicate object parameter must not be null.");
         Reqs.parameterCondition(Predicates.notNull(), secondMemberPredicateParam, "Second member predicate object parameter must not be null.");
         firstMemberPredicate = firstMemberPredicateParam;

@@ -50,7 +50,7 @@ public final class Predicates {
         return not((Predicate<T>) ObjectPredicates.NULL);
     }
 
-    public static  Predicate<Collection> notEmptyCollection() {
+    public static Predicate<Collection> notEmptyCollection() {
         return not(CollectionPredicates.EMPTY);
     }
 
@@ -67,27 +67,27 @@ public final class Predicates {
     }
 
     public static <T> Predicate<T> equalTo(final Object objectParam) {
-        return new EqualToPredicate<T>(objectParam);
+        return EqualToPredicate.getInstance(objectParam);
     }
 
     public static Predicate<Object> instanceOf(final Class<?> classParam) {
-        return new InstanceOfPredicate(classParam);
+        return InstanceOfPredicate.getInstance(classParam);
     }
 
     public static Predicate<Iterable<?>> allInstanceOf(final Class<?> classParam) {
-        return new AllInstanceOfPredicate(classParam);
+        return AllInstanceOfPredicate.getInstance(classParam);
     }
 
     public static Predicate<Class<?>> assignableFrom(final Class<?> classParam) {
-        return new AssignableFromPredicate(classParam);
+        return AssignableFromPredicate.getInstance(classParam);
     }
 
     public static Predicate<CharSequence> containsPattern(final String patternStringParam) {
-        return new PatternContainedPredicate(patternStringParam);
+        return PatternContainedPredicate.getInstance(patternStringParam);
     }
 
     public static Predicate<CharSequence> containsPattern(final Pattern patternParam) {
-        return new PatternContainedPredicate(patternParam);
+        return PatternContainedPredicate.getInstance(patternParam);
     }
 
     public static Predicate<CharSequence> emptyCharSequence() {

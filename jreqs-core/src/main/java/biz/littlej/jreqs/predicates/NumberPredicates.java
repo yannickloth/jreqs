@@ -114,5 +114,14 @@ public enum NumberPredicates implements Predicate<Number>, Serializable {
                 return 0 <= inputParam.doubleValue();
             }
         }
+    },
+    EVEN {
+        public boolean apply(Number inputParam) {
+            throw new UnsupportedOperationException("even predicate is still not implemented.");
+        }
+    }, ODD {
+        public boolean apply(Number inputParam) {
+            return !EVEN.apply(inputParam);//TODO if inputparam is not an integer type, even may return false for numbers that are not integers - do this check!
+        }
     }
 }

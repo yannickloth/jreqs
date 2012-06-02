@@ -29,7 +29,17 @@ public final class InstanceOfPredicate implements Predicate<Object>, Serializabl
     private static final long serialVersionUID = 0;
     private final Class<?> clazz;
 
-    public InstanceOfPredicate(final Class<?> classParam) {
+    public static InstanceOfPredicate getInstance(final Class<?> classParam) {
+        final InstanceOfPredicate p = PredicateCache.getPredicate(classParam, InstanceOfPredicate.class);
+        if (p != null) {
+            return p;
+        }
+        final InstanceOfPredicate predicate = new InstanceOfPredicate(classParam);
+        PredicateCache.registerNewPredicate(predicate.clazz, predicate);
+        return predicate;
+    }
+
+    private InstanceOfPredicate(final Class<?> classParam) {
         Reqs.parameterCondition(Predicates.notNull(), classParam, "Class parameter must not be null.");
         clazz = classParam;
     }

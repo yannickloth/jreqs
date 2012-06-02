@@ -30,15 +30,29 @@ public final class PatternContainedPredicate implements Predicate<CharSequence>,
     private static final long serialVersionUID = 0;
     private final Pattern pattern;
 
+    public static PatternContainedPredicate getInstance(final Pattern patternParam) {
+        final PatternContainedPredicate p = PredicateCache.getPredicate(patternParam, PatternContainedPredicate.class);
+        if (p != null) {
+            return p;
+        }
+        final PatternContainedPredicate predicate = new PatternContainedPredicate(patternParam);
+        PredicateCache.registerNewPredicate(predicate.pattern, predicate);
+        return predicate;
+    }
+
+    public static PatternContainedPredicate getInstance(final String patternParam) {
+        return getInstance(Pattern.compile(patternParam));
+    }
+
     /**
      * @param patternParam Must not be {@code null}.
      */
-    public PatternContainedPredicate(final Pattern patternParam) {
+    private PatternContainedPredicate(final Pattern patternParam) {
         Reqs.parameterCondition(Predicates.notNull(), patternParam, "Pattern parameter must not be null.");
         pattern = patternParam;
     }
 
-    public PatternContainedPredicate(String patternStringParam) {
+    private PatternContainedPredicate(String patternStringParam) {
         this(Pattern.compile(patternStringParam));
     }
 

@@ -19,6 +19,7 @@ package biz.littlej.jreqs.predicates;
 import biz.littlej.jreqs.Reqs;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 /**
  * Returns a predicate that evaluates to {@code true} if any of the specified predicates also do for the same input, like the logical OR.
@@ -31,7 +32,18 @@ public final class OrPredicate<T> implements Predicate<T>, Serializable {
     private final Predicate<T> firstMemberPredicate;
     private final Predicate<T> secondeMemberPredicate;
 
-    public OrPredicate(final Predicate<T> firstMemberPredicateParam, final Predicate<T> secondMemberPredicateParam) {
+    public static <T> OrPredicate getInstance(final Predicate<T> firstMemberPredicateParam, final Predicate<T> secondMemberPredicateParam) {
+        final int h = Arrays.deepHashCode(new Predicate[]{firstMemberPredicateParam, secondMemberPredicateParam});
+        final OrPredicate<T> p = PredicateCache.getPredicate(h, OrPredicate.class);
+        if (p != null) {
+            return p;
+        }
+        final OrPredicate<T> predicate = new OrPredicate<T>(firstMemberPredicateParam, secondMemberPredicateParam);
+        PredicateCache.registerNewPredicate(h, predicate);
+        return predicate;
+    }
+
+    private OrPredicate(final Predicate<T> firstMemberPredicateParam, final Predicate<T> secondMemberPredicateParam) {
         Reqs.parameterCondition(Predicates.notNull(), firstMemberPredicateParam, "First member predicate object parameter must not be null.");
         Reqs.parameterCondition(Predicates.notNull(), secondMemberPredicateParam, "Second member predicate object parameter must not be null.");
         firstMemberPredicate = firstMemberPredicateParam;

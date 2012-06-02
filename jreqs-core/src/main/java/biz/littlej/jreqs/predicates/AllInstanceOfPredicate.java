@@ -29,7 +29,17 @@ public final class AllInstanceOfPredicate implements Predicate<Iterable<?>>, Ser
     private static final long serialVersionUID = 0;
     private final Class<?> clazz;
 
-    public AllInstanceOfPredicate(final Class<?> classParam) {
+    public static AllInstanceOfPredicate getInstance(final Class<?> classParam) {
+        final AllInstanceOfPredicate p = PredicateCache.getPredicate(classParam, AllInstanceOfPredicate.class);
+        if (p != null) {
+            return p;
+        }
+        final AllInstanceOfPredicate predicate = new AllInstanceOfPredicate(classParam);
+        PredicateCache.registerNewPredicate(predicate.clazz, predicate);
+        return predicate;
+    }
+
+    private AllInstanceOfPredicate(final Class<?> classParam) {
         Reqs.parameterCondition(Predicates.notNull(), classParam, "Class parameter must not be null.");
         clazz = classParam;
     }

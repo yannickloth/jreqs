@@ -22,8 +22,7 @@ import java.math.BigInteger;
 import java.util.*;
 import java.util.regex.Pattern;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Unit tests for {@link Predicates}.
@@ -164,6 +163,9 @@ public class PredicatesTest {
         }
         {
             assertFalse("Date object should evaluate to false.", Predicates.instanceOf(Calendar.class).apply(new Date()));
+        }
+        {
+            assertSame("Both predicate references should reference the same object, as it's supposed to be cached.", Predicates.instanceOf(Calendar.class), Predicates.instanceOf(Calendar.class));
         }
     }
 

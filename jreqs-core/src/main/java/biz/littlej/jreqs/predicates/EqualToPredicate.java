@@ -30,7 +30,17 @@ public final class EqualToPredicate<T> implements Predicate<T>, Serializable {
     private static final long serialVersionUID = 0;
     private final Object o;
 
-    public EqualToPredicate(final Object objectParam) {
+    public static <T> EqualToPredicate<T> getInstance(final Object objectParam) {
+        final EqualToPredicate p = PredicateCache.getPredicate(objectParam, EqualToPredicate.class);
+        if (p != null) {
+            return p;
+        }
+        final EqualToPredicate<T> predicate = new EqualToPredicate<T>(objectParam);
+        PredicateCache.registerNewPredicate(predicate.o, predicate);
+        return predicate;
+    }
+
+    private EqualToPredicate(final Object objectParam) {
         Reqs.parameterCondition(Predicates.notNull(), objectParam, "Object parameter must not be null.");
         o = objectParam;
     }
