@@ -14,7 +14,7 @@ public class BeanValidationPredicateTest {
         final DomainBean domainBean = new DomainBean();
         domainBean.setSomeString("lalalala");
         domainBean.setSomeInt(56);
-        final Predicate<DomainBean> beanValidationPredicate = new BeanValidationPredicate<DomainBean>();
+        final Predicate<DomainBean> beanValidationPredicate = BeanValidationPredicate.getInstance();
         assertTrue("bean should be valid", beanValidationPredicate.apply(domainBean));
     }
 
@@ -23,7 +23,7 @@ public class BeanValidationPredicateTest {
         final DomainBean domainBean = new DomainBean();
         domainBean.setSomeString("lalalala");
         domainBean.setSomeInt(0);
-        final Predicate<DomainBean> beanValidationPredicate = new BeanValidationPredicate<DomainBean>();
+        final Predicate<DomainBean> beanValidationPredicate = BeanValidationPredicate.getInstance();
         assertFalse("DomainBean should be invalid", beanValidationPredicate.apply(domainBean));
         final Set<ConstraintViolation<DomainBean>> violations =
                 ((BeanValidationPredicate<DomainBean>) beanValidationPredicate).getConstraintViolationsForBean(domainBean);
@@ -35,7 +35,7 @@ public class BeanValidationPredicateTest {
         final DomainBean domainBean = new DomainBean();
         domainBean.setSomeString("  ");
         domainBean.setSomeInt(10);
-        final Predicate<DomainBean> beanValidationPredicate = new BeanValidationPredicate<DomainBean>();
+        final Predicate<DomainBean> beanValidationPredicate = BeanValidationPredicate.getInstance();
         assertFalse("DomainBean should be invalid", beanValidationPredicate.apply(domainBean));
         final Set<ConstraintViolation<DomainBean>> violations =
                 ((BeanValidationPredicate<DomainBean>) beanValidationPredicate).getConstraintViolationsForBean(domainBean);
@@ -47,7 +47,7 @@ public class BeanValidationPredicateTest {
         final DomainBean domainBean = new DomainBean();
         domainBean.setSomeString("  ");
         domainBean.setSomeInt(10);
-        final Predicate<DomainBean> beanValidationPredicate = new BeanValidationPredicate<DomainBean>();
+        final Predicate<DomainBean> beanValidationPredicate = BeanValidationPredicate.getInstance();
         assertFalse("DomainBean should be invalid", beanValidationPredicate.apply(domainBean));
         final Set<ConstraintViolation<DomainBean>> violations =
                 ((BeanValidationPredicate<DomainBean>) beanValidationPredicate).getConstraintViolationsForBean(domainBean);
