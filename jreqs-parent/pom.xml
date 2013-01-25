@@ -28,9 +28,9 @@
         <developer>
             <name>Yannick LOTH</name>
             <timezone>+1</timezone>
-            <email>yannick AT littlej.biz</email>
-            <organization>LittleJ</organization>
-            <organizationUrl>http://www.littlej.biz</organizationUrl>
+            <email>yannick AT yannickloth.be</email>
+            <organization>Yannick Loth</organization>
+            <organizationUrl>http://www.yannickloth.be</organizationUrl>
         </developer>
     </developers>
     <build>
@@ -73,8 +73,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.2</version>
                 <configuration>
-                    <source>1.5</source>
-                    <target>1.5</target>
+                    <source>1.6</source>
+                    <target>1.6</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
@@ -82,6 +82,13 @@
     </build>
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>biz.littlej.jreqs</groupId>
+                <artifactId>jreqs-bom</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
