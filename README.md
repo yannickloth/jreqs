@@ -173,6 +173,12 @@ Simply add the following dependency(ies) to your Maven project:
 
 ## Releases
 
+### 0.1.2
+
+Add module jreqs-beanvalidation.
+
+Javadoc: [http://littlej.github.com/jreqs/javadoc/0.1.2/](http://littlej.github.com/jreqs/javadoc/0.1.2/ "Javadoc")
+
 ### 0.1.1
 
 Second release.  Most stuff in the core is unit tested.
@@ -274,11 +280,6 @@ Simply import the projects.
 1.  **How to get support for jreqs ?**
 
     jreqs isn't that complex, so there's no support plan.  But if really necessary, I'd be glad to help, feel free to contact me.  I'll be happy to help you in German, French, English and maybe even Dutch (depends on how blonde you are, I really need great motivation to speak Dutch well =D ).
-
-1.  **How can I buy jreqs ?**
-
-    Hmmm.  With lots of money.  See my contact info below.
-    (Actually that is not a FAQ, but maybe it's giving ideas to some people... =D)
 
 ## About the author of this library
 
