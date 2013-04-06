@@ -35,8 +35,14 @@ public final class Reqs {
      * @throws IllegalArgumentException if the condition is not verified.
      */
     public static <T> void parameterCondition(final Predicate<T> predicateParam, final T inputParam, final String messageParam) {
-        if (!predicateParam.apply(inputParam)) {
-            throw new IllegalArgumentException("Parameter requirement not verified: " + messageParam);
+        try {
+            if (!predicateParam.apply(inputParam)) {
+                throw new IllegalArgumentException("Parameter requirement not verified: " + messageParam);
+            }
+        } catch (RequirementException e) {
+            throw new IllegalArgumentException("Parameter requirement not verified: " + messageParam + " - Triggered by: " + e.getMessage(), e);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Parameter requirement not verified: " + messageParam + " - Triggered by: " + e.getMessage(), e);
         }
     }
 
@@ -50,8 +56,14 @@ public final class Reqs {
      * @throws RequirementException if the condition is not verified.
      */
     public static <T> void condition(final Predicate<T> predicateParam, final T inputParam, final String messageParam) {
-        if (!predicateParam.apply(inputParam)) {
-            throw new RequirementException("Requirement not verified: " + messageParam);
+        try {
+            if (!predicateParam.apply(inputParam)) {
+                throw new RequirementException("Requirement not verified: " + messageParam);
+            }
+        } catch (RequirementException e) {
+            throw new RequirementException("Parameter requirement not verified: " + messageParam + " - Triggered by: " + e.getMessage(), e);
+        } catch (IllegalArgumentException e) {
+            throw new RequirementException("Parameter requirement not verified: " + messageParam + " - Triggered by: " + e.getMessage(), e);
         }
     }
 
@@ -65,8 +77,14 @@ public final class Reqs {
      * @throws PreConditionException if the condition is not verified.
      */
     public static <T> void preCondition(final Predicate<T> predicateParam, final T inputParam, final String messageParam) {
-        if (!predicateParam.apply(inputParam)) {
-            throw new PreConditionException("Pre-condition not verified: " + messageParam);
+        try {
+            if (!predicateParam.apply(inputParam)) {
+                throw new PreConditionException("Pre-condition not verified: " + messageParam);
+            }
+        } catch (RequirementException e) {
+            throw new PreConditionException("Parameter requirement not verified: " + messageParam + " - Triggered by: " + e.getMessage(), e);
+        } catch (IllegalArgumentException e) {
+            throw new PreConditionException("Parameter requirement not verified: " + messageParam + " - Triggered by: " + e.getMessage(), e);
         }
     }
 
@@ -80,8 +98,14 @@ public final class Reqs {
      * @throws PostConditionException if the condition is not verified.
      */
     public static <T> void postCondition(final Predicate<T> predicateParam, final T inputParam, final String messageParam) {
-        if (!predicateParam.apply(inputParam)) {
-            throw new PostConditionException("Post-condition not verified: " + messageParam);
+        try {
+            if (!predicateParam.apply(inputParam)) {
+                throw new PostConditionException("Post-condition not verified: " + messageParam);
+            }
+        } catch (RequirementException e) {
+            throw new PostConditionException("Parameter requirement not verified: " + messageParam + " - Triggered by: " + e.getMessage(), e);
+        } catch (IllegalArgumentException e) {
+            throw new PostConditionException("Parameter requirement not verified: " + messageParam + " - Triggered by: " + e.getMessage(), e);
         }
     }
 }
