@@ -37,9 +37,9 @@
         <developer>
             <name>Yannick LOTH</name>
             <timezone>+1</timezone>
-            <email>yannick AT littlej.biz</email>
-            <organization>LittleJ</organization>
-            <organizationUrl>http://www.littlej.biz</organizationUrl>
+            <email>yannick AT yannickloth.be</email>
+            <organization>Yannick Loth</organization>
+            <organizationUrl>http://www.yannickloth.be</organizationUrl>
         </developer>
     </developers>
 </project>

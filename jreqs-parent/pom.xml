@@ -28,9 +28,9 @@
         <developer>
             <name>Yannick LOTH</name>
             <timezone>+1</timezone>
-            <email>yannick AT littlej.biz</email>
-            <organization>LittleJ</organization>
-            <organizationUrl>http://www.littlej.biz</organizationUrl>
+            <email>yannick AT yannickloth.be</email>
+            <organization>Yannick Loth</organization>
+            <organizationUrl>http://www.yannickloth.be</organizationUrl>
         </developer>
     </developers>
     <build>
@@ -73,14 +73,52 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.2</version>
                 <configuration>
-                    <source>1.5</source>
-                    <target>1.5</target>
+                    <source>1.6</source>
+                    <target>1.6</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>biz.littlej.jreqs</groupId>
+                <artifactId>jreqs-bom</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${version.guava}</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${version.junit}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>${version.beanValidation}</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${version.hibernateValidator}</version>
+                <scope>runtime</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <properties>
+        <version.guava>11.0.2</version.guava>
+        <version.hibernateValidator>4.2.0.Final</version.hibernateValidator>
+        <version.beanValidation>1.0.0.GA</version.beanValidation>
+        <version.junit>4.10</version.junit>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 </project>

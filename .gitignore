@@ -1,4 +1,6 @@
-/.idea
 /.settings
 /.project
-/jreqs.iml
+*.iml
+*.ipr
+*.iws
+.idea/
