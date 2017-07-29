@@ -18,6 +18,10 @@ package biz.littlej.jreqs.predicates;
 import biz.littlej.jreqs.Reqs;
 
 import java.io.Serializable;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 /**
  * @author Yannick LOTH
@@ -39,6 +43,34 @@ public enum StringPredicates implements Predicate<String>, Serializable {
     BLANK {
         public boolean apply(final String inputParam) {
             return inputParam == null || inputParam.trim().isEmpty();
+        }
+    },
+    /**
+     * Checks if the input {@code String} is a valid URI.
+     */
+    VALID_URI {
+        @Override
+        public boolean apply(String inputParam) {
+            try {
+                new URI(inputParam);
+                return true;
+            } catch (URISyntaxException e) {
+                return false;
+            }
+        }
+    },
+    /**
+     * Checks if the input {@code String} is a valid URL.
+     */
+    VALID_URL {
+        @Override
+        public boolean apply(String inputParam) {
+            try {
+                new URL(inputParam);
+                return true;
+            } catch (MalformedURLException e) {
+                return false;
+            }
         }
     }
 }
