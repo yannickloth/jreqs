@@ -183,4 +183,22 @@ public final class Predicates {
             }
         };
     }
+
+    public static Predicate<String> isValidUrl() {
+        return new Predicate<String>() {
+            public boolean apply(final String inputParam) {
+                Reqs.parameterCondition(Predicates.notNull(), inputParam, "Input parameter must not be null.");
+                return StringPredicates.VALID_URL.apply(inputParam);
+            }
+        };
+    }
+
+    public static Predicate<String> isValidUri() {
+        return new Predicate<String>() {
+            public boolean apply(final String inputParam) {
+                Reqs.parameterCondition(Predicates.notNull(), inputParam, "Input parameter must not be null.");
+                return StringPredicates.VALID_URI.apply(inputParam);
+            }
+        };
+    }
 }

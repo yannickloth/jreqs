@@ -538,4 +538,16 @@ public class PredicatesTest {
         assertTrue("False should evaluate to false", Predicates.isFalse().apply(false));
         assertFalse("True should evaluate to false", Predicates.isFalse().apply(true));
     }
+
+    @Test
+    public void testValidUrl() {
+        assertFalse("'tututu' should be an invalid URL", Predicates.isValidUrl().apply("tututu"));
+        assertTrue("'https://www.google.com' should be a valid URL", Predicates.isValidUrl().apply("https://www.google.com"));
+    }
+
+    @Test
+    public void testValidUri() {
+        assertFalse("':tututu' should be an invalid URI", Predicates.isValidUri().apply(":tututu"));
+        assertTrue("'tutu://www.google.com' should be a valid URI", Predicates.isValidUri().apply("tutu://www.google.com"));
+    }
 }
