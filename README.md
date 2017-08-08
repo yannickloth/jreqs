@@ -283,7 +283,7 @@ Simply import the projects.
 
 ## About the author of this library
 
-My name is Yannick LOTH.  I'm a Belgian freelance JavaEE/Web expert/architect.
+My name is Yannick LOTH.  I'm a Belgian JavaEE/Web expert/architect.
 
 <table>
   <thead>
