@@ -8,7 +8,7 @@ The code of all jreqs modules is copyright of Yannick Loth, Belgium, and is lice
 
 ## Code example
 
-Nothing's worth an immediate look at the code, so here it is:
+Nothing's worth more than an immediate look at the code, so here it is:
 
 ```java
 ...
