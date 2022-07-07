@@ -116,7 +116,7 @@
     </dependencyManagement>
     <properties>
         <version.guava>11.0.2</version.guava>
-        <version.hibernateValidator>4.2.0.Final</version.hibernateValidator>
+        <version.hibernateValidator>6.0.23.Final</version.hibernateValidator>
         <version.beanValidation>1.0.0.GA</version.beanValidation>
         <version.junit>4.10</version.junit>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
